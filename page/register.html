@@ -5,67 +5,92 @@
     <meta charset="utf-8">
     <title>Đăng ký - CakeZone</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Oswald:wght@500;600;700&display=swap"
-        rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons & Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="../assests/css/bootstrap.min.css" rel="stylesheet">
     <link href="../assests/css/style.css" rel="stylesheet">
+
     <style>
         .auth-card {
             max-width: 560px;
             margin: 70px auto;
         }
-
         .brand-logo {
             font-family: 'Oswald', sans-serif;
+        }
+        .text-error {
+            color: #d9534f;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 
 <body class="bg-img">
+
+    <!-- Navbar -->
     <nav class="navbar navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand text-white brand-logo" href="index.html"><i
-                    class="fa fa-birthday-cake text-primary me-2"></i>CakeZone</a>
-            <div>
-                <a class="nav-link d-inline text-white" href="login.html">Đăng nhập</a>
-            </div>
+            <a class="navbar-brand text-white brand-logo" href="index.html">
+                <i class="fa fa-birthday-cake text-primary me-2"></i> CakeZone
+            </a>
+            <a class="nav-link d-inline text-white" href="login.php">Đăng nhập</a>
         </div>
     </nav>
 
+    <!-- Register Form -->
     <div class="container auth-card">
         <div class="card border-inner">
             <div class="card-body p-4">
+
                 <h3 class="mb-3 text-center">Tạo tài khoản</h3>
-                <form id="registerForm" novalidate>
+
+                <form id="registerForm" action="register.php" method="post" novalidate>
+
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Họ và tên</label>
-                            <input id="fullName" type="text" class="form-control" required>
+                            <input name="full_name" type="text" id="fullName" class="form-control" required>
+                            <div class="text-error" id="errFullName"></div>
                         </div>
+
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Số điện thoại</label>
-                            <input id="phone" type="tel" class="form-control">
+                            <input name="phone" type="tel" class="form-control">
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Email</label>
-                        <input id="regEmail" type="email" class="form-control" required>
+                        <input name="email" type="email" id="regEmail" class="form-control" required>
+                        <div class="text-error" id="errEmail"></div>
                     </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Địa chỉ</label>
+                        <input name="address" type="text" class="form-control">
+                    </div>
+
                     <div class="mb-3">
                         <label class="form-label">Tên đăng nhập</label>
-                        <input id="regUser" type="text" class="form-control" required>
+                        <input name="username" type="text" id="regUser" class="form-control" required>
+                        <div class="text-error" id="errUser"></div>
                     </div>
+
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Mật khẩu</label>
-                            <input id="regPass" type="password" class="form-control" required>
+                            <input name="password" type="password" id="regPass" class="form-control" required>
+                            <div class="text-error" id="errPass"></div>
                         </div>
+
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Xác nhận mật khẩu</label>
-                            <input id="regPass2" type="password" class="form-control" required>
+                            <input type="password" id="regPass2" class="form-control" required>
+                            <div class="text-error" id="errPass2"></div>
                         </div>
                     </div>
 
@@ -73,25 +98,58 @@
                 </form>
 
                 <div class="text-center mt-3">
-                    <span class="small">Đã có tài khoản? <a href="login.html">Đăng nhập</a></span>
+                    <span class="small">Đã có tài khoản? <a href="login.php">Đăng nhập</a></span>
                 </div>
+
             </div>
         </div>
     </div>
 
+    <!-- JS Validate -->
     <script>
-        document.getElementById('registerForm').addEventListener('submit', function (e) {
-            e.preventDefault();
+        const form = document.getElementById('registerForm');
+
+        form.addEventListener('submit', function (e) {
+            let ok = true;
+
+            // Clear error messages
+            ['errFullName','errEmail','errUser','errPass','errPass2']
+                .forEach(id => document.getElementById(id).textContent = '');
+
+            const fullName = document.getElementById('fullName').value.trim();
             const email = document.getElementById('regEmail').value.trim();
             const user = document.getElementById('regUser').value.trim();
-            const pass = document.getElementById('regPass').value;
-            const pass2 = document.getElementById('regPass2').value;
-            if (!email || !user || !pass) { alert('Vui lòng điền đầy đủ thông tin bắt buộc.'); return; }
-            if (pass !== pass2) { alert('Mật khẩu không khớp.'); return; }
-            alert('Đăng ký thành công (demo). Vui lòng đăng nhập.');
-            location.href = 'login.html';
+            const pass = document.getElementById('regPass').value.trim();
+            const pass2 = document.getElementById('regPass2').value.trim();
+
+            if (!fullName) {
+                document.getElementById('errFullName').textContent = 'Họ và tên là bắt buộc.';
+                ok = false;
+            }
+
+            if (!email) {
+                document.getElementById('errEmail').textContent = 'Email là bắt buộc.';
+                ok = false;
+            }
+
+            if (!user) {
+                document.getElementById('errUser').textContent = 'Tên đăng nhập là bắt buộc.';
+                ok = false;
+            }
+
+            if (!pass || pass.length < 8) {
+                document.getElementById('errPass').textContent = 'Mật khẩu phải >= 8 ký tự.';
+                ok = false;
+            }
+
+            if (pass !== pass2) {
+                document.getElementById('errPass2').textContent = 'Mật khẩu nhập lại không khớp.';
+                ok = false;
+            }
+
+            if (!ok) e.preventDefault();
         });
     </script>
-</body>
 
+</body>
 </html>
