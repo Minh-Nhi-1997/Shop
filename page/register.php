@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'connect.php'; // file bạn đã tạo
+require './connect-db.php'; // file bạn đã tạo
 
 // ---- Nhận dữ liệu từ form ----
 $full_name = trim($_POST['full_name'] ?? '');
