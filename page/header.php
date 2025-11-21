@@ -18,7 +18,7 @@ require './connect-db.php';
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto mx-lg-auto py-0">
-            <a href="index.html" class="nav-item nav-link active">Home</a>
+            <a href="index.php" class="nav-item nav-link active">Home</a>
             <a href="about.html" class="nav-item nav-link">About Us</a>
             <a href="menu.html" class="nav-item nav-link">Menu & Pricing</a>
             <a href="team.html" class="nav-item nav-link">Master Chefs</a>

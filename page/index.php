@@ -349,7 +349,7 @@ $conn->close();
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
+                                        <img class="img-fluid" src="../assests/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
                                         <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
@@ -745,7 +745,7 @@ $conn->close();
     <script src="../assests/lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="../assests/js/main.js"></script>
 </body>
 
 </html>
