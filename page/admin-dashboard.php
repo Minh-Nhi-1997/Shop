@@ -39,6 +39,7 @@ while($row = $res->fetch_assoc()) $recentProducts[] = $row;
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="../assests/css/bootstrap.min.css" rel="stylesheet">
     <link href="../assests/css/style.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         .sidebar { background:#2c3e50; min-height:100vh; padding:20px; }
         .sidebar a { color:#fff; text-decoration:none; display:block; padding:10px 15px; border-radius:5px; margin-bottom:5px; }
@@ -54,15 +55,7 @@ while($row = $res->fetch_assoc()) $recentProducts[] = $row;
 <div class="container-fluid">
     <div class="row">
         <!-- Sidebar -->
-        <div class="col-md-3 sidebar">
-            <h5 class="text-white mb-4"><i class="fa fa-cogs"></i> Admin Panel</h5>
-            <a href="admin-dashboard.php" class="nav-link active"><i class="fa fa-tachometer-alt"></i> Dashboard</a>
-            <a href="admin-products.php" class="nav-link"><i class="fa fa-birthday-cake"></i> Sản phẩm</a>
-            <a href="admin-orders.php" class="nav-link"><i class="fa fa-shopping-cart"></i> Đơn hàng</a>
-            <a href="admin-users.php" class="nav-link"><i class="fa fa-users"></i> Người dùng</a>
-            <hr class="bg-white">
-            <a href="logout.php" class="nav-link"><i class="fa fa-sign-out-alt"></i> Đăng xuất</a>
-        </div>
+        <?php include 'sidebar.php'; ?>
 
         <!-- Main Content -->
         <div class="col-md-9 main-content">
@@ -174,5 +167,6 @@ while($row = $res->fetch_assoc()) $recentProducts[] = $row;
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assests/js/active.js"></script>
 </body>
 </html>

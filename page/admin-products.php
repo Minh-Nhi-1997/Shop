@@ -189,25 +189,23 @@ $conn->close();
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3 sidebar">
-                <h5 class="text-white mb-4"><i class="fa fa-cogs"></i> Admin Panel</h5>
-                <a href="admin-dashboard.php" class="nav-link"><i class="fa fa-home"></i> Dashboard</a>
-                <a href="admin-products.php" class="nav-link active"><i class="fa fa-birthday-cake"></i> Sản phẩm</a>
-                <a href="admin-orders.php" class="nav-link"><i class="fa fa-shopping-cart"></i> Đơn hàng</a>
-                <a href="admin-users.php" class="nav-link"><i class="fa fa-users"></i> Người dùng</a>
-                <hr class="bg-white">
-                <a href="logout.php" class="nav-link"><i class="fa fa-sign-out-alt"></i> Đăng xuất</a>
-            </div>
+            <?php include 'sidebar.php'; ?>
 
             <div class="col-md-9 main-content">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h2>Quản lý sản phẩm</h2>
                     <button class="btn btn-primary border-inner" data-bs-toggle="modal" data-bs-target="#productModal" id="btnAdd"><i class="fa fa-plus"></i> Thêm sản phẩm</button>
                 </div>
-
-                <div class="mb-3">
+                <div class="mb-3 d-flex gap-2">
+                    <select id="filterCategory" class="form-control" style="max-width:250px;">
+                        <option value="">-- Tất cả danh mục --</option>
+                        <?php foreach ($categories as $cat): ?>
+                            <option value="<?= $cat['category_id']; ?>"><?= htmlspecialchars($cat['category_name']); ?></option>
+                        <?php endforeach; ?>
+                    </select>
                     <input id="searchInput" type="text" class="form-control" placeholder="Tìm kiếm sản phẩm...">
                 </div>
+
 
                 <div id="productsList">
                     <?php if (empty($products)): ?>
@@ -223,7 +221,9 @@ $conn->close();
                                         <h6><?= htmlspecialchars($p['product_name']); ?></h6>
                                         <p class="small text-muted mb-1"><?= htmlspecialchars($p['description']); ?></p>
                                         <div>
-                                            <span class="badge bg-primary"><?= htmlspecialchars($p['category_name'] ?? 'Chưa phân loại'); ?></span>
+                                            <span class="badge bg-primary" data-category-id="<?= $p['category_id']; ?>">
+                                                <?= htmlspecialchars($p['category_name'] ?? 'Chưa phân loại'); ?>
+                                            </span>
                                             <span class="text-danger fw-bold ms-2"><?= number_format($p['price']); ?> VNĐ</span>
                                         </div>
                                         <p class="small mt-1">Tồn kho: <strong><?= (int)$p['stock']; ?></strong></p>
@@ -309,12 +309,25 @@ $conn->close();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Search filter
-        $('#searchInput').on('keyup', function() {
-            const q = $(this).val().toLowerCase();
+        function filterProducts() {
+            const q = $('#searchInput').val().toLowerCase();
+            const cat = $('#filterCategory').val();
+
             $('#productsList .product-card').each(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(q) !== -1);
+                const text = $(this).text().toLowerCase();
+                const productCat = $(this).find('.badge').data('category-id'); // lưu category_id trong badge
+                const matchSearch = text.indexOf(q) !== -1;
+                const matchCategory = !cat || productCat == cat;
+                $(this).toggle(matchSearch && matchCategory);
             });
-        });
+        }
+
+        // Search filter
+        $('#searchInput').on('keyup', filterProducts);
+
+        // Category filter
+        $('#filterCategory').on('change', filterProducts);
+
 
         // Open add modal
         $('#btnAdd').on('click', function() {
@@ -365,6 +378,7 @@ $conn->close();
             if (!confirm('Bạn chắc chắn muốn xóa "' + $(this).data('name') + '" ?')) e.preventDefault();
         });
     </script>
+    <script src="../assests/js/active.js"></script>
 </body>
 
 </html>
