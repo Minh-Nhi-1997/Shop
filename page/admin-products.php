@@ -7,6 +7,13 @@ if (!isset($_SESSION['customer_id'])) {
     header('Location: login.html');
     exit;
 }
+// Kiểm tra phân quyền admin
+if (($_SESSION['role'] ?? '') !== 'admin') {
+    // Nếu là customer hoặc role khác admin
+    echo "<h2 style='color:red; text-align:center; margin-top:50px;'>Bạn không có quyền truy cập trang này!</h2>";
+    echo "<p style='text-align:center;'><a href='index.php'>Quay lại trang chủ</a></p>";
+    exit;
+}
 
 // Handle POST actions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

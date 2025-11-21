@@ -1,7 +1,18 @@
 <?php
 session_start();
 require './connect-db.php'; // file kết nối DB
-
+// Kiểm tra đăng nhập
+if (!isset($_SESSION['customer_id'])) {
+    header('Location: login.html');
+    exit;
+}
+// Kiểm tra phân quyền admin
+if (($_SESSION['role'] ?? '') !== 'admin') {
+    // Nếu là customer hoặc role khác admin
+    echo "<h2 style='color:red; text-align:center; margin-top:50px;'>Bạn không có quyền truy cập trang này!</h2>";
+    echo "<p style='text-align:center;'><a href='index.php'>Quay lại trang chủ</a></p>";
+    exit;
+}
 // Thống kê
 $statProducts = $conn->query("SELECT COUNT(*) AS total FROM products")->fetch_assoc()['total'] ?? 0;
 $statOrders   = $conn->query("SELECT COUNT(*) AS total FROM orders")->fetch_assoc()['total'] ?? 0;
