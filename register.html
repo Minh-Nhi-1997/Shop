@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <title>Đăng ký - CakeZone</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Oswald:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        .auth-card {
+            max-width: 560px;
+            margin: 70px auto;
+        }
+
+        .brand-logo {
+            font-family: 'Oswald', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-img">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand text-white brand-logo" href="index.html"><i
+                    class="fa fa-birthday-cake text-primary me-2"></i>CakeZone</a>
+            <div>
+                <a class="nav-link d-inline text-white" href="login.html">Đăng nhập</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container auth-card">
+        <div class="card border-inner">
+            <div class="card-body p-4">
+                <h3 class="mb-3 text-center">Tạo tài khoản</h3>
+                <form id="registerForm" novalidate>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Họ và tên</label>
+                            <input id="fullName" type="text" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Số điện thoại</label>
+                            <input id="phone" type="tel" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input id="regEmail" type="email" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Tên đăng nhập</label>
+                        <input id="regUser" type="text" class="form-control" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Mật khẩu</label>
+                            <input id="regPass" type="password" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Xác nhận mật khẩu</label>
+                            <input id="regPass2" type="password" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 border-inner">Đăng ký</button>
+                </form>
+
+                <div class="text-center mt-3">
+                    <span class="small">Đã có tài khoản? <a href="login.html">Đăng nhập</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const email = document.getElementById('regEmail').value.trim();
+            const user = document.getElementById('regUser').value.trim();
+            const pass = document.getElementById('regPass').value;
+            const pass2 = document.getElementById('regPass2').value;
+            if (!email || !user || !pass) { alert('Vui lòng điền đầy đủ thông tin bắt buộc.'); return; }
+            if (pass !== pass2) { alert('Mật khẩu không khớp.'); return; }
+            alert('Đăng ký thành công (demo). Vui lòng đăng nhập.');
+            location.href = 'login.html';
+        });
+    </script>
+</body>
+
+</html>
