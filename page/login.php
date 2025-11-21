@@ -1,50 +1,36 @@
 <?php
 session_start();
-require './connect-db.php'; // Kết nối đến database
+require './connect-db.php';
 
-// ---- Nhận dữ liệu từ form ----
-$email_or_username = trim($_POST['loginUser'] ?? '');
-$password          = trim($_POST['loginPass'] ?? '');
-$remember          = isset($_POST['remember']) ? true : false;
+// Nhận dữ liệu từ form
+$login_user = trim($_POST['login_user'] ?? '');
+$login_pass = trim($_POST['login_pass'] ?? '');
 
-// ---- Kiểm tra dữ liệu bắt buộc ----
-if ($email_or_username == '' || $password == '') {
-    die("Vui lòng nhập đầy đủ thông tin!");
+// Kiểm tra dữ liệu bắt buộc
+if ($login_user == '' || $login_pass == '') {
+    die("Vui lòng nhập email và mật khẩu!");
 }
 
-// ---- Tìm user theo email (vì bảng hiện tại chỉ có email) ----
-$stmt = $conn->prepare("SELECT customer_id, full_name, email, password_hash FROM customers WHERE email = ?");
+// Tìm customer theo email
+$stmt = $conn->prepare("SELECT customer_id, password_hash FROM customers WHERE email = ?");
 if (!$stmt) {
     die("Lỗi prepare: " . $conn->error);
 }
 
-$stmt->bind_param("s", $email_or_username);
+$stmt->bind_param("s", $login_user);
 $stmt->execute();
 $result = $stmt->get_result();
 
-if ($result->num_rows === 0) {
-    die("Email không tồn tại!");
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    if (password_verify($login_pass, $row['password_hash'])) {
+        $_SESSION['customer_id'] = $row['customer_id'];
+        header("Location: index.html");
+        exit;
+    }
 }
 
-$user = $result->fetch_assoc();
+die("Email hoặc mật khẩu không đúng!");
 $stmt->close();
-
-// ---- Kiểm tra mật khẩu ----
-if (!password_verify($password, $user['password_hash'])) {
-    die("Mật khẩu không đúng!");
-}
-
-// ---- Đăng nhập thành công ----
-$_SESSION['customer_id'] = $user['customer_id'];
-$_SESSION['full_name']   = $user['full_name'];
-$_SESSION['email']       = $user['email'];
-
-// ---- Xử lý ghi nhớ (cookie) nếu cần ----
-if ($remember) {
-    setcookie('customer_id', $user['customer_id'], time() + (30 * 24 * 60 * 60), "/"); // 30 ngày
-}
-
-// ---- Chuyển hướng sau khi đăng nhập ----
-header("Location: index.php"); // hoặc trang dashboard
-exit();
+$conn->close();
 ?>

@@ -40,13 +40,13 @@
                 <form id="loginForm" method="POST" action="login.php" novalidate>
                     <div class="mb-3">
                         <label class="form-label">Email hoặc tên đăng nhập</label>
-                        <input id="loginUser" type="text" class="form-control" placeholder="Email hoặc username"
+                        <input id="loginUser" type="text" class="form-control" name="login_user" placeholder="Email hoặc username"
                             required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Mật khẩu</label>
                         <div class="input-group">
-                            <input id="loginPass" type="password" class="form-control" placeholder="Mật khẩu" required>
+                            <input id="loginPass" type="password" class="form-control" name="login_pass" placeholder="Mật khẩu" required>
                             <button id="toggleLoginPass" type="button" class="btn btn-outline-secondary">Hiện</button>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="../assests/js/auth-ui.js"></script>
+    <!-- <script src="../assests/js/auth-ui.js"></script> -->
 </body>
 
 </html>
