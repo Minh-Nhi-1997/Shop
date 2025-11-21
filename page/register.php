@@ -55,7 +55,7 @@ $stmt->bind_param("sssss", $full_name, $email, $hash, $phone, $address);
 
 if ($stmt->execute()) {
     echo "<h3>Đăng ký thành công!</h3>";
-    echo "<a href='login.php'>→ Đăng nhập ngay</a>";
+    echo "<a href='login.html'>→ Đăng nhập ngay</a>";
 } else {
     echo "Lỗi khi lưu dữ liệu: " . $stmt->error;
 }
