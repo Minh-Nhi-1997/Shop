@@ -1,6 +1,22 @@
+<?php
+session_start();
+require './connect-db.php';
+// Nếu chưa đăng nhập, redirect tới login
+if (!isset($_SESSION['customer_id'])) {
+    header("Location: login.html");
+    exit;
+}
+$stmt = $conn->prepare("SELECT full_name FROM customers WHERE customer_id = ?");
+$stmt->bind_param("i", $_SESSION['customer_id']);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+$full_name = $user['full_name'] ?? 'User';
+$stmt->close();
+$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <title>CakeZone - Cake Shop Website Template</title>
@@ -86,7 +102,12 @@
                     </div>
                 </div>
                 <a href="contact.html" class="nav-item nav-link">Contact Us</a>
-                <a href="login.html" class="nav-item nav-link">Login</a>
+                <?php if (isset($_SESSION['customer_id'])): ?>
+                    <span class="nav-item nav-link text-primary">Xin chào, <?php echo htmlspecialchars($full_name); ?></span>
+                    <a href="logout.php" class="nav-item nav-link">Logout</a>
+                <?php else: ?>
+                    <a href="login.html" class="nav-item nav-link">Login</a>
+                <?php endif; ?>
             </div>
         </div>
     </nav>
@@ -752,5 +773,4 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>
-
 </html>

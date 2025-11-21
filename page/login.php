@@ -25,7 +25,7 @@ if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     if (password_verify($login_pass, $row['password_hash'])) {
         $_SESSION['customer_id'] = $row['customer_id'];
-        header("Location: index.html");
+        header("Location: index.php");
         exit;
     }
 }
