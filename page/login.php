@@ -12,7 +12,7 @@ if ($login_user == '' || $login_pass == '') {
 }
 
 // Tìm customer theo email
-$stmt = $conn->prepare("SELECT customer_id, password_hash FROM customers WHERE email = ?");
+$stmt = $conn->prepare("SELECT customer_id, full_name, password_hash FROM customers WHERE email = ?");
 if (!$stmt) {
     die("Lỗi prepare: " . $conn->error);
 }
@@ -25,6 +25,8 @@ if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     if (password_verify($login_pass, $row['password_hash'])) {
         $_SESSION['customer_id'] = $row['customer_id'];
+        $_SESSION['full_name'] = $row['full_name'];
+
         header("Location: index.php");
         exit;
     }
@@ -33,4 +35,3 @@ if ($result->num_rows > 0) {
 die("Email hoặc mật khẩu không đúng!");
 $stmt->close();
 $conn->close();
-?>
