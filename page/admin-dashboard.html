@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <title>Dashboard - CakeZone Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="../assests/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assests/css/style.css" rel="stylesheet">
+    <style>
+        .sidebar { background:#2c3e50; min-height:100vh; padding:20px; }
+        .sidebar a { color:#fff; text-decoration:none; display:block; padding:10px 15px; border-radius:5px; margin-bottom:5px; }
+        .sidebar a:hover, .sidebar a.active { background:#fd7e14; }
+        .main-content { padding:30px; }
+        .stat-card { border-radius:8px; padding:20px; color:#fff; }
+        .stat-card .value { font-size:1.6rem; font-weight:700; }
+        .stat-card .label { opacity:.9; }
+        .table-responsive { max-height:320px; overflow:auto; }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 sidebar">
+                <h5 class="text-white mb-4"><i class="fa fa-cogs"></i> Admin Panel</h5>
+                <a href="admin-dashboard.html" class="nav-link active"><i class="fa fa-tachometer-alt"></i> Dashboard</a>
+                <a href="admin-products.html" class="nav-link"><i class="fa fa-birthday-cake"></i> Sản phẩm</a>
+                <a href="admin-orders.html" class="nav-link"><i class="fa fa-shopping-cart"></i> Đơn hàng</a>
+                <a href="admin-users.html" class="nav-link"><i class="fa fa-users"></i> Người dùng</a>
+                <hr class="bg-white">
+                <a href="login.html" class="nav-link"><i class="fa fa-sign-out-alt"></i> Đăng xuất</a>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9 main-content">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2>Dashboard</h2>
+                    <div>
+                        <button id="btnRefresh" class="btn btn-outline-secondary btn-sm"><i class="fa fa-sync"></i> Refresh</button>
+                        <button id="btnAddSample" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm mẫu</button>
+                    </div>
+                </div>
+
+                <!-- Stats -->
+                <div class="row g-3 mb-4">
+                    <div class="col-md-3">
+                        <div class="stat-card bg-primary">
+                            <div class="label">Tổng sản phẩm</div>
+                            <div class="value" id="statProducts">0</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card bg-success">
+                            <div class="label">Đơn hàng</div>
+                            <div class="value" id="statOrders">0</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card bg-warning">
+                            <div class="label">Người dùng</div>
+                            <div class="value" id="statUsers">0</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card bg-danger">
+                            <div class="label">Doanh thu (tạm)</div>
+                            <div class="value" id="statRevenue">0 VNĐ</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Orders & Products -->
+                <div class="row">
+                    <div class="col-lg-7 mb-4">
+                        <div class="card border-inner">
+                            <div class="card-header bg-white">
+                                <strong>Đơn hàng gần đây</strong>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Mã</th>
+                                                <th>Khách hàng</th>
+                                                <th>Tổng tiền</th>
+                                                <th>Trạng thái</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="ordersTable">
+                                            <!-- JS populate -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5 mb-4">
+                        <div class="card border-inner">
+                            <div class="card-header bg-white">
+                                <strong>Sản phẩm mới</strong>
+                            </div>
+                            <div class="card-body" id="recentProducts">
+                                <!-- JS populate -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="card border-inner">
+                    <div class="card-body">
+                        <h6>Nhanh</h6>
+                        <div class="d-flex gap-2 flex-wrap">
+                            <a href="admin-products.html" class="btn btn-outline-primary btn-sm"><i class="fa fa-birthday-cake"></i> Quản lý sản phẩm</a>
+                            <a href="admin-orders.html" class="btn btn-outline-success btn-sm"><i class="fa fa-shopping-cart"></i> Quản lý đơn</a>
+                            <a href="admin-users.html" class="btn btn-outline-warning btn-sm"><i class="fa fa-users"></i> Quản lý người dùng</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Demo dữ liệu (kết nối thật: gọi API / PHP)
+        const defaultProducts = [
+            {id:1, name:'Bánh gato Chocolate', price:250000, stock:10, image:'img/cake-1.jpg'},
+            {id:2, name:'Bánh Vanilla', price:220000, stock:15, image:'img/cake-2.jpg'},
+            {id:3, name:'Donut Glazed', price:45000, stock:30, image:'img/donut-1.jpg'}
+        ];
+        const defaultOrders = [
+            {id:'ORD001', customer:'Nguyễn A', total:500000, status:'Đã thanh toán'},
+            {id:'ORD002', customer:'Trần B', total:150000, status:'Chờ xử lý'},
+            {id:'ORD003', customer:'Lê C', total:220000, status:'Đang giao'}
+        ];
+        const defaultUsers = [
+            {id:1, name:'Người dùng 1'},
+            {id:2, name:'Người dùng 2'},
+            {id:3, name:'Người dùng 3'}
+        ];
+
+        function renderStats() {
+            const products = JSON.parse(localStorage.getItem('cakezone_products') || 'null') || defaultProducts;
+            const orders = JSON.parse(localStorage.getItem('cakezone_orders') || 'null') || defaultOrders;
+            const users = JSON.parse(localStorage.getItem('cakezone_users') || 'null') || defaultUsers;
+
+            document.getElementById('statProducts').textContent = products.length;
+            document.getElementById('statOrders').textContent = orders.length;
+            document.getElementById('statUsers').textContent = users.length;
+            const revenue = orders.reduce((s,o)=> s + (o.total||0),0);
+            document.getElementById('statRevenue').textContent = revenue.toLocaleString() + ' VNĐ';
+
+            // render orders table
+            const ordersTbody = document.getElementById('ordersTable');
+            ordersTbody.innerHTML = orders.map(o => `
+                <tr>
+                    <td>${o.id}</td>
+                    <td>${o.customer}</td>
+                    <td>${(o.total||0).toLocaleString()} VNĐ</td>
+                    <td><span class="badge ${o.status==='Đã thanh toán' ? 'bg-success' : o.status==='Đang giao' ? 'bg-warning' : 'bg-secondary'}">${o.status}</span></td>
+                </tr>
+            `).join('');
+
+            // recent products
+            const recentProductsEl = document.getElementById('recentProducts');
+            recentProductsEl.innerHTML = products.slice(0,5).map(p => `
+                <div class="d-flex align-items-center mb-2">
+                    <img src="${p.image}" alt="" style="width:54px;height:42px;object-fit:cover;border-radius:6px;margin-right:10px">
+                    <div>
+                        <div class="fw-bold">${p.name}</div>
+                        <div class="small text-muted">${p.price.toLocaleString()} VNĐ • Tồn: ${p.stock}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        document.getElementById('btnRefresh').addEventListener('click', renderStats);
+        document.getElementById('btnAddSample').addEventListener('click', () => {
+            const products = JSON.parse(localStorage.getItem('cakezone_products') || 'null') || defaultProducts.slice();
+            const newId = Math.max(...products.map(p=>p.id),0) + 1;
+            products.unshift({id:newId, name:'Sản phẩm Mẫu '+newId, price:90000, stock:5, image:'img/default.jpg'});
+            localStorage.setItem('cakezone_products', JSON.stringify(products));
+            renderStats();
+        });
+
+        // init
+        renderStats();
+    </script>
+</body>
+</html>
