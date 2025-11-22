@@ -497,7 +497,8 @@ $conn->close();
                         <a href="index.php" class="navbar-brand">
                             <h1 class="m-0 text-uppercase text-white"><i class="fa fa-birthday-cake fs-1 text-dark me-3"></i>CakeZone</h1>
                         </a>
-                        <p class="mt-3">Lorem diam sit erat dolor elitr et, diam lorem justo labore amet clita labore stet eos magna sit. Elitr dolor eirmod duo tempor lorem, elitr clita ipsum sea. Nonumy rebum et takimata ea takimata amet gubergren, erat rebum magna lorem stet eos. Diam amet et kasd eos duo dolore no.</p>
+                        <p class="mt-3">Every cake we create begins with a spark of passion. From the softest sponge to the finest cream,
+each layer is crafted with care, embracing sweetness, warmth, and a touch of artistry. At CakeZone, we believe desserts are more than treats—they are moments of joy, memories to hold, and little celebrations wrapped in delicate flavors. Indulge in the taste of happiness, crafted just for you.</p>
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-6">
