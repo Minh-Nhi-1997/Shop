@@ -231,304 +231,78 @@ $conn->close();
                 <h2 class="text-primary font-secondary">Menu & Pricing</h2>
                 <h1 class="display-4 text-uppercase">Explore Our Cakes</h1>
             </div>
+            <?php
+
+            // Lấy tất cả category
+            $categories = [];
+            $result = $conn->query("SELECT * FROM categories ORDER BY category_id ASC");
+            while ($row = $result->fetch_assoc()) {
+                $categories[$row['category_id']] = $row['category_name'];
+            }
+
+            // Lấy tất cả sản phẩm
+            $products_by_category = [];
+            $result = $conn->query("SELECT * FROM products ORDER BY product_id ASC");
+            while ($row = $result->fetch_assoc()) {
+                $cat_id = $row['category_id'];
+                $products_by_category[$cat_id][] = $row;
+            }
+            ?>
+
             <div class="tab-class text-center">
                 <ul class="nav nav-pills d-inline-flex justify-content-center bg-dark text-uppercase border-inner p-4 mb-5">
-                    <li class="nav-item">
-                        <a class="nav-link text-white active" data-bs-toggle="pill" href="#tab-1">Birthday</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" data-bs-toggle="pill" href="#tab-2">Wedding</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" data-bs-toggle="pill" href="#tab-3">Custom</a>
-                    </li>
+                    <?php
+                    $first = true;
+                    foreach ($categories as $cat_id => $cat_name): ?>
+                        <li class="nav-item">
+                            <a class="nav-link text-white <?= $first ? 'active' : '' ?>" data-bs-toggle="pill" href="#tab-<?= $cat_id ?>">
+                                <?= htmlspecialchars($cat_name) ?>
+                            </a>
+                        </li>
+                    <?php $first = false;
+                    endforeach; ?>
                 </ul>
-                <div class="tab-content">
-                    <div id="tab-1" class="tab-pane fade show p-0 active">
-                        <div class="row g-3">
-                            <div class="col-lg-6">
-                                <div class="d-flex h-100">
-                                    <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assets/img/cake-1.jpg" alt="" style="width: 150px; height: 85px;">
-                                        <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                        <button class="cart-btn">
-                                            <i class="fa fa-shopping-cart"></i> Add to Cart
-                                        </button>
 
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                        <h5 class="text-uppercase">Birthday Cake</h5>
-                                        <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="d-flex h-100">
-                                    <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assets/img/cake-1.jpg" alt="" style="width: 150px; height: 85px;">
-                                        <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                        <button class="cart-btn">
-                                            <i class="fa fa-shopping-cart"></i> Add to Cart
-                                        </button>
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                        <h5 class="text-uppercase">Birthday Cake</h5>
-                                        <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="d-flex h-100">
-                                    <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assets/img/cake-1.jpg" alt="" style="width: 150px; height: 85px;">
-                                        <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                        <button class="cart-btn">
-                                            <i class="fa fa-shopping-cart"></i> Add to Cart
-                                        </button>
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                        <h5 class="text-uppercase">Birthday Cake</h5>
-                                        <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="d-flex h-100">
-                                    <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assets/img/cake-1.jpg" alt="" style="width: 150px; height: 85px;">
-                                        <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                        <button class="cart-btn">
-                                            <i class="fa fa-shopping-cart"></i> Add to Cart
-                                        </button>
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                        <h5 class="text-uppercase">Birthday Cake</h5>
-                                        <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="d-flex h-100">
-                                    <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assets/img/cake-1.jpg" alt="" style="width: 150px; height: 85px;">
-                                        <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                        <button class="cart-btn">
-                                            <i class="fa fa-shopping-cart"></i> Add to Cart
-                                        </button>
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                        <h5 class="text-uppercase">Birthday Cake</h5>
-                                        <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="d-flex h-100">
-                                    <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assets/img/cake-1.jpg" alt="" style="width: 150px; height: 85px;">
-                                        <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                        <button class="cart-btn">
-                                            <i class="fa fa-shopping-cart"></i> Add to Cart
-                                        </button>
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                        <h5 class="text-uppercase">Birthday Cake</h5>
-                                        <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                    </div>
-                                </div>
+                <div class="tab-content">
+                    <?php
+                    $first = true;
+                    foreach ($categories as $cat_id => $cat_name): ?>
+                        <div id="tab-<?= $cat_id ?>" class="tab-pane fade p-0 <?= $first ? 'show active' : '' ?>">
+                            <div class="row g-3">
+                                <?php
+                                if (!empty($products_by_category[$cat_id])):
+                                    foreach ($products_by_category[$cat_id] as $product):
+                                ?>
+                                        <div class="col-lg-6">
+                                            <div class="d-flex h-100">
+                                                <div class="flex-shrink-0 text-center">
+                                                    <img class="img-fluid" src="../../assets/img/<?= htmlspecialchars($product['image']) ?>" alt="" style="width: 150px; height: 85px;">
+                                                    <h4 class="bg-dark text-primary p-2 m-0"><?= number_format($product['price'], 0, ',', '.') ?>₫</h4>
+                                                    <form method="post" action="add-to-cart.php">
+                                                        <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+                                                        <button type="submit" class="btn btn-primary cart-btn mt-2">
+                                                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4 flex-grow-1">
+                                                    <h5 class="text-uppercase"><?= htmlspecialchars($product['product_name']) ?></h5>
+                                                    <span><?= htmlspecialchars($product['description']) ?></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    endforeach;
+                                else: ?>
+                                    <p class="text-center">Hiện chưa có sản phẩm trong danh mục này.</p>
+                                <?php endif; ?>
                             </div>
                         </div>
-                    </div>
-                    <div id="tab-2" class="tab-pane fade show p-0">
-                        <div class="row g-3">
-                            <div class="col-lg-6">
-                                <div class="d-flex h-100">
-                                    <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assets/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
-                                        <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                        <button class="cart-btn">
-                                            <i class="fa fa-shopping-cart"></i> Add to Cart
-                                        </button>
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                        <h5 class="text-uppercase">Wedding Cake</h5>
-                                        <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="d-flex h-100">
-                                    <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assets/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
-                                        <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                        <button class="cart-btn">
-                                            <i class="fa fa-shopping-cart"></i> Add to Cart
-                                        </button>
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                        <h5 class="text-uppercase">Wedding Cake</h5>
-                                        <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="d-flex h-100">
-                                    <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assets/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
-                                        <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                        <button class="cart-btn">
-                                            <i class="fa fa-shopping-cart"></i> Add to Cart
-                                        </button>
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                        <h5 class="text-uppercase">Wedding Cake</h5>
-                                        <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="d-flex h-100">
-                                    <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assets/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
-                                        <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                        <button class="cart-btn">
-                                            <i class="fa fa-shopping-cart"></i> Add to Cart
-                                        </button>
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                        <h5 class="text-uppercase">Wedding Cake</h5>
-                                        <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="d-flex h-100">
-                                    <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assets/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
-                                        <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                        <button class="cart-btn">
-                                            <i class="fa fa-shopping-cart"></i> Add to Cart
-                                        </button>
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                        <h5 class="text-uppercase">Wedding Cake</h5>
-                                        <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="d-flex h-100">
-                                    <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assets/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
-                                        <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                        <button class="cart-btn">
-                                            <i class="fa fa-shopping-cart"></i> Add to Cart
-                                        </button>
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                        <h5 class="text-uppercase">Wedding Cake</h5>
-                                        <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="tab-3" class="tab-pane fade show p-0">
-                        <div class="row g-3">
-                            <div class="col-lg-6">
-                                <div class="d-flex h-100">
-                                    <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assets/img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
-                                        <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                        <button class="cart-btn">
-                                            <i class="fa fa-shopping-cart"></i> Add to Cart
-                                        </button>
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                        <h5 class="text-uppercase">Custom Cake</h5>
-                                        <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="d-flex h-100">
-                                    <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assets/img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
-                                        <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                        <button class="cart-btn">
-                                            <i class="fa fa-shopping-cart"></i> Add to Cart
-                                        </button>
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                        <h5 class="text-uppercase">Custom Cake</h5>
-                                        <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="d-flex h-100">
-                                    <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assets/img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
-                                        <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                        <button class="cart-btn">
-                                            <i class="fa fa-shopping-cart"></i> Add to Cart
-                                        </button>
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                        <h5 class="text-uppercase">Custom Cake</h5>
-                                        <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="d-flex h-100">
-                                    <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assets/img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
-                                        <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                        <button class="cart-btn">
-                                            <i class="fa fa-shopping-cart"></i> Add to Cart
-                                        </button>
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                        <h5 class="text-uppercase">Custom Cake</h5>
-                                        <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="d-flex h-100">
-                                    <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assets/img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
-                                        <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                        <button class="cart-btn">
-                                            <i class="fa fa-shopping-cart"></i> Add to Cart
-                                        </button>
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                        <h5 class="text-uppercase">Custom Cake</h5>
-                                        <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="d-flex h-100">
-                                    <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assets/img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
-                                        <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                        <button class="cart-btn">
-                                            <i class="fa fa-shopping-cart"></i> Add to Cart
-                                        </button>
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                        <h5 class="text-uppercase">Custom Cake</h5>
-                                        <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php $first = false;
+                    endforeach; ?>
                 </div>
             </div>
+
         </div>
     </div>
     <!-- Products End -->
