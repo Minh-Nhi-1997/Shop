@@ -1,16 +1,9 @@
 <?php
 session_start();
-require './connect-db.php'; // file kết nối DB
+require '../../user/page/connect-db.php'; // file kết nối DB
 // Kiểm tra đăng nhập
-if (!isset($_SESSION['customer_id'])) {
-    header('Location: login.html');
-    exit;
-}
-// Kiểm tra phân quyền admin
-if (($_SESSION['role'] ?? '') !== 'admin') {
-    // Nếu là customer hoặc role khác admin
-    echo "<h2 style='color:red; text-align:center; margin-top:50px;'>Bạn không có quyền truy cập trang này!</h2>";
-    echo "<p style='text-align:center;'><a href='index.php'>Quay lại trang chủ</a></p>";
+if (!isset($_SESSION['admin_id'])) {
+    header('Location: admin_login.php'); // login admin riêng
     exit;
 }
 // Thống kê
@@ -48,8 +41,8 @@ while($row = $res->fetch_assoc()) $recentProducts[] = $row;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="../assests/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assests/css/style.css" rel="stylesheet">
+    <link href="../../assests/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../assests/css/style.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         .sidebar { background:#2c3e50; min-height:100vh; padding:20px; }
