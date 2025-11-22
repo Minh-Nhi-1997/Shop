@@ -56,13 +56,13 @@ $conn->close();
                     <i class="bi bi-envelope fs-1 text-primary me-3"></i>
                     <div class="text-start">
                         <h6 class="text-uppercase mb-1">Email Us</h6>
-                        <span>info@example.com</span>
+                        <span>nfo@itc.edu.vn</span>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 text-center bg-primary border-inner py-3">
                 <div class="d-inline-flex align-items-center justify-content-center">
-                    <a href="index.html" class="navbar-brand">
+                    <a href="index.php" class="navbar-brand">
                         <h1 class="m-0 text-uppercase text-white"><i class="fa fa-birthday-cake fs-1 text-dark me-3"></i>CakeZone</h1>
                     </a>
                 </div>
@@ -72,7 +72,7 @@ $conn->close();
                     <i class="bi bi-phone-vibrate fs-1 text-primary me-3"></i>
                     <div class="text-start">
                         <h6 class="text-uppercase mb-1">Call Us</h6>
-                        <span>+012 345 6789</span>
+                        <span>(028) 397 349 83</span>
                     </div>
                 </div>
             </div>
@@ -94,7 +94,7 @@ $conn->close();
                 <div class="col-lg-8 text-center text-lg-start">
                     <h1 class="font-secondary text-primary mb-4">Super Crispy</h1>
                     <h1 class="display-1 text-uppercase text-white mb-4">CakeZone</h1>
-                    <h1 class="text-uppercase text-white">The Best Cake In London</h1>
+                    <h1 class="text-uppercase text-white">The Best Cake In VietNam</h1>
                     <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5">
                         <a href="" class="btn btn-primary border-inner py-3 px-5 me-5">Read More</a>
                         <button type="button" class="btn-play" data-bs-toggle="modal"
@@ -145,22 +145,22 @@ $conn->close();
                     </div>
                 </div>
                 <div class="col-lg-6 pb-5">
-                    <h4 class="mb-4">Tempor erat elitr rebum clita. Diam dolor diam ipsum erat lorem sed stet labore lorem sit clita duo</h4>
-                    <p class="mb-5">Tempor erat elitr at rebum at at clita. Diam dolor diam ipsum et tempor sit. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo et tempor eirmod magna dolore erat amet magna</p>
+                    <h4 class="mb-4">At CakeZone, we believe every cake carries a story—a quiet whisper of love, a celebration of joy, a warm memory wrapped in soft cream and sweet fragrance.</h4>
+                    <p class="mb-5">Our cakes are more than desserts—they are moments of happiness, captured in sugar and dreams. From the gentle swirl of chocolate to the delicate touch of vanilla, we blend flavors, textures, and inspiration to bring you treats that melt not only on the tongue, but also in the heart.</p>
                     <div class="row g-5">
                         <div class="col-sm-6">
                             <div class="d-flex align-items-center justify-content-center bg-primary border-inner mb-4" style="width: 90px; height: 90px;">
                                 <i class="fa fa-heartbeat fa-2x text-white"></i>
                             </div>
                             <h4 class="text-uppercase">100% Healthy</h4>
-                            <p class="mb-0">Labore justo vero ipsum sit clita erat lorem magna clita nonumy dolor magna dolor vero</p>
+                            <p class="mb-0">We choose pure, natural ingredients to ensure every slice feels as good as it tastes. Fresh, wholesome, and lovingly prepared—because you deserve sweetness you can trust.</p>
                         </div>
                         <div class="col-sm-6">
                             <div class="d-flex align-items-center justify-content-center bg-primary border-inner mb-4" style="width: 90px; height: 90px;">
                                 <i class="fa fa-award fa-2x text-white"></i>
                             </div>
                             <h4 class="text-uppercase">Award Winning</h4>
-                            <p class="mb-0">Labore justo vero ipsum sit clita erat lorem magna clita nonumy dolor magna dolor vero</p>
+                            <p class="mb-0">Our dedication to quality and creativity has earned us recognition in the world of artisan baking. But our greatest reward is seeing the smile that blooms on your face with every bite.</p>
                         </div>
                     </div>
                 </div>
@@ -315,27 +315,27 @@ $conn->close();
                 <div class="col-lg-4 col-md-6">
                     <div class="bg-primary border-inner text-center text-white p-5">
                         <h4 class="text-uppercase mb-3">Birthday Cake</h4>
-                        <p>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo amet tempor amet kasd lorem dolor ipsum</p>
+                        <p>Make every birthday extra special with a cake crafted to capture joy, warmth, and sweet memories. From soft layers to delicate cream, each creation is designed to bring a smile that lasts long after the candles fade.</p>
                         <a class="text-uppercase text-dark" href="">Read More <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="bg-primary border-inner text-center text-white p-5">
                         <h4 class="text-uppercase mb-3">Wedding Cake</h4>
-                        <p>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo amet tempor amet kasd lorem dolor ipsum</p>
+                        <p>Celebrate love with a masterpiece made for your unforgettable day. Elegant, timeless, and beautifully detailed—our wedding cakes are crafted with passion to make every moment truly magical.</p>
                         <a class="text-uppercase text-dark" href="">Read More <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="bg-primary border-inner text-center text-white p-5">
                         <h4 class="text-uppercase mb-3">Custom Cake</h4>
-                        <p>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo amet tempor amet kasd lorem dolor ipsum</p>
+                        <p>Your imagination, our craftsmanship. Whether sweet, playful, or bold, we bring your vision to life with flavors and designs made uniquely for you.</p>
                         <a class="text-uppercase text-dark" href="">Read More <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-12 col-md-6 text-center">
-                    <h1 class="text-uppercase text-light mb-4">30% Discount For This Summer</h1>
-                    <a href="" class="btn btn-primary border-inner py-3 px-5">Order Now</a>
+                    <h1 class="text-uppercase text-light mb-4">30% Discount For This Winter</h1>
+                    <a href="menu.html" class="btn btn-primary border-inner py-3 px-5">Order Now</a>
                 </div>
             </div>
         </div>
@@ -364,8 +364,8 @@ $conn->close();
                             </div>
                         </div>
                         <div class="bg-dark border-inner text-center p-4">
-                            <h4 class="text-uppercase text-primary">Full Name</h4>
-                            <p class="text-white m-0">Designation</p>
+                            <h4 class="text-uppercase text-primary">Mr.Nhi</h4>
+                            <p class="text-white m-0">Master Chef</p>
                         </div>
                     </div>
                 </div>
@@ -382,8 +382,8 @@ $conn->close();
                             </div>
                         </div>
                         <div class="bg-dark border-inner text-center p-4">
-                            <h4 class="text-uppercase text-primary">Full Name</h4>
-                            <p class="text-white m-0">Designation</p>
+                            <h4 class="text-uppercase text-primary">Mr.Triet</h4>
+                            <p class="text-white m-0">Chef</p>
                         </div>
                     </div>
                 </div>
@@ -400,8 +400,8 @@ $conn->close();
                             </div>
                         </div>
                         <div class="bg-dark border-inner text-center p-4">
-                            <h4 class="text-uppercase text-primary">Full Name</h4>
-                            <p class="text-white m-0">Designation</p>
+                            <h4 class="text-uppercase text-primary">Mr.Nam</h4>
+                            <p class="text-white m-0">Chef</p>
                         </div>
                     </div>
                 </div>
@@ -417,10 +417,10 @@ $conn->close();
             <div class="row gx-5 justify-content-center">
                 <div class="col-lg-7 text-center">
                     <div class="section-title position-relative text-center mx-auto mb-4 pb-3" style="max-width: 600px;">
-                        <h2 class="text-primary font-secondary">Special Kombo Pack</h2>
+                        <h2 class="text-primary font-secondary">Special Combo Pack</h2>
                         <h1 class="display-4 text-uppercase text-white">Super Crispy Cakes</h1>
                     </div>
-                    <p class="text-white mb-4">Eirmod sed tempor lorem ut dolores sit kasd ipsum. Dolor ea et dolore et at sea ea at dolor justo ipsum duo rebum sea. Eos vero eos vero ea et dolore eirmod et. Dolores diam duo lorem. Elitr ut dolores magna sit. Sea dolore sed et.</p>
+                    <p class="text-white mb-4">Indulge in a perfect blend of flavor and texture —crispy on the outside, soft and dreamy within. Every bite is crafted to bring comfort, joy, and a touch of sweetness to your day. Discover cakes made with passion, inspired by moments that deserve something truly special. Let the aroma, the crunch, and the sweetness melt gently into your heart.</p>
                     <a href="" class="btn btn-primary border-inner py-3 px-5 me-3">Shop Now</a>
                     <a href="" class="btn btn-dark border-inner py-3 px-5">Read More</a>
                 </div>
@@ -442,41 +442,41 @@ $conn->close();
                     <div class="d-flex align-items-center mb-3">
                         <img class="img-fluid flex-shrink-0" src="../../assets/img/testimonial-1.jpg" style="width: 60px; height: 60px;">
                         <div class="ps-3">
-                            <h4 class="text-primary text-uppercase mb-1">Client Name</h4>
-                            <span>Profession</span>
+                            <h4 class="text-primary text-uppercase mb-1">Mr.Khanh</h4>
+                            <span>Thành Viên FPT</span>
                         </div>
                     </div>
-                    <p class="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
+                    <p class="mb-0">Bánh quá ngon mọi người ơi, mình rất thích bánh ở đây. Sẽ ủng hộ dài dài nha!
                     </p>
                 </div>
                 <div class="testimonial-item bg-dark text-white border-inner p-4">
                     <div class="d-flex align-items-center mb-3">
                         <img class="img-fluid flex-shrink-0" src="../../assets/img/testimonial-2.jpg" style="width: 60px; height: 60px;">
                         <div class="ps-3">
-                            <h4 class="text-primary text-uppercase mb-1">Client Name</h4>
-                            <span>Profession</span>
+                            <h4 class="text-primary text-uppercase mb-1">Mr.Nguyen</h4>
+                            <span>Kỹ Sư Máy Tính</span>
                         </div>
                     </div>
-                    <p class="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
+                    <p class="mb-0">Bánh rất ngon, giao hàng nhanh, đóng gói cẩn thận. Sẽ tiếp tục ủng hộ shop!
                     </p>
                 </div>
                 <div class="testimonial-item bg-dark text-white border-inner p-4">
                     <div class="d-flex align-items-center mb-3">
                         <img class="img-fluid flex-shrink-0" src="../../assets/img/testimonial-3.jpg" style="width: 60px; height: 60px;">
                         <div class="ps-3">
-                            <h4 class="text-primary text-uppercase mb-1">Client Name</h4>
-                            <span>Profession</span>
+                            <h4 class="text-primary text-uppercase mb-1">Mr.phu</h4>
+                            <span>Kỹ Thuật Viên</span>
                         </div>
                     </div>
-                    <p class="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
+                    <p class="mb-0">Bánh rất ngon, mình rất thích bánh ở đây. Sẽ tiếp tục ủng hộ shop!
                     </p>
                 </div>
                 <div class="testimonial-item bg-dark text-white border-inner p-4">
                     <div class="d-flex align-items-center mb-3">
                         <img class="img-fluid flex-shrink-0" src="../../assets/img/testimonial-4.jpg" style="width: 60px; height: 60px;">
                         <div class="ps-3">
-                            <h4 class="text-primary text-uppercase mb-1">Client Name</h4>
-                            <span>Profession</span>
+                            <h4 class="text-primary text-uppercase mb-1">Mr.Tuan</h4>
+                            <span>Nhân Viên Văn Phòng</span>
                         </div>
                     </div>
                     <p class="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
@@ -494,10 +494,11 @@ $conn->close();
             <div class="row gx-5">
                 <div class="col-lg-4 col-md-6 mb-lg-n5">
                     <div class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary border-inner p-4">
-                        <a href="index.html" class="navbar-brand">
+                        <a href="index.php" class="navbar-brand">
                             <h1 class="m-0 text-uppercase text-white"><i class="fa fa-birthday-cake fs-1 text-dark me-3"></i>CakeZone</h1>
                         </a>
-                        <p class="mt-3">Lorem diam sit erat dolor elitr et, diam lorem justo labore amet clita labore stet eos magna sit. Elitr dolor eirmod duo tempor lorem, elitr clita ipsum sea. Nonumy rebum et takimata ea takimata amet gubergren, erat rebum magna lorem stet eos. Diam amet et kasd eos duo dolore no.</p>
+                        <p class="mt-3">Every cake we create begins with a spark of passion. From the softest sponge to the finest cream,
+each layer is crafted with care, embracing sweetness, warmth, and a touch of artistry. At CakeZone, we believe desserts are more than treats—they are moments of joy, memories to hold, and little celebrations wrapped in delicate flavors. Indulge in the taste of happiness, crafted just for you.</p>
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-6">
@@ -506,15 +507,16 @@ $conn->close();
                             <h4 class="text-primary text-uppercase mb-4">Get In Touch</h4>
                             <div class="d-flex mb-2">
                                 <i class="bi bi-geo-alt text-primary me-2"></i>
-                                <p class="mb-0">123 Street, New York, USA</p>
+                                <p class="mb-0">12 Trinh Dinh Thao, Tan Phu, HCM City, Viet Nam
+                                </p>
                             </div>
                             <div class="d-flex mb-2">
                                 <i class="bi bi-envelope-open text-primary me-2"></i>
-                                <p class="mb-0">info@example.com</p>
+                                <p class="mb-0">info@itc.edu.vn</p>
                             </div>
                             <div class="d-flex mb-2">
                                 <i class="bi bi-telephone text-primary me-2"></i>
-                                <p class="mb-0">+012 345 67890</p>
+                                <p class="mb-0">(028) 397 349 83</p>
                             </div>
                             <div class="d-flex mt-4">
                                 <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 me-2" href="#"><i class="fab fa-twitter fw-normal"></i></a>
@@ -535,7 +537,7 @@ $conn->close();
                         </div>
                         <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
                             <h4 class="text-primary text-uppercase mb-4">Newsletter</h4>
-                            <p>Amet justo diam dolor rebum lorem sit stet sea justo kasd</p>
+                            <p>Stay inspired with our sweetest updates — exclusive offers, new flavors, and delicious stories delivered straight to your inbox.</p>
                             <form action="">
                                 <div class="input-group">
                                     <input type="text" class="form-control border-white p-3" placeholder="Your Email">
@@ -550,12 +552,12 @@ $conn->close();
     </div>
     <div class="container-fluid text-secondary py-4" style="background: #111111;">
         <div class="container text-center">
-            <p class="mb-0">&copy; <a class="text-white border-bottom" href="#">Your Site Name</a>. All Rights Reserved.
+            <p ><a ></a>
 
                 <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                Designed by <a class="text-white border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                <a></a>
             </p>
-            <br>Distributed By: <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
+            <br></a>
         </div>
     </div>
     <!-- Footer End -->
