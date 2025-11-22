@@ -60,26 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
     }
 }
 
-// Xử lý feedback
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['feedback'])) {
-    $feedback = trim($_POST['feedback_message'] ?? '');
-    if ($feedback) {
-        $stmt = $conn->prepare("INSERT INTO feedbacks (customer_id, message, created_at) VALUES (?, ?, NOW())");
-        if (!$stmt) {
-            die("Prepare failed: " . $conn->error);
-        }
-        $stmt->bind_param("is", $uid, $feedback);
-        $stmt->execute();
-        $stmt->close();
-        
-        // Chuyển về giỏ hàng hoặc trang khác nếu cần
-        header("Location: cart.php");
-        exit;
-    } else {
-        $feedback_msg = "Vui lòng nhập phản hồi.";
-    }
-}
-
 // Lấy chi tiết đơn hàng nếu đã thanh toán
 if ($order_id) {
     $stmt = $conn->prepare("
@@ -226,28 +206,6 @@ $conn->close();
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>
-
-                            <div class="bg-secondary border-inner p-4 rounded mb-4">
-                                <h5 class="text-uppercase mb-3"><i class="fa fa-comments text-primary"></i> Để Lại Phản Hồi</h5>
-                                <?php if ($feedback_msg): ?>
-                                    <div class="alert alert-info alert-dismissible fade show border-inner mb-3" role="alert">
-                                        <?= htmlspecialchars($feedback_msg) ?>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                    </div>
-                                <?php endif; ?>
-                                <form method="post">
-                                    <input type="hidden" name="order_id" value="<?= $order_id ?>">
-                                    <div class="mb-3">
-                                        <label class="form-label text-white">Nhận Xét Của Bạn</label>
-                                        <textarea name="feedback_message" rows="4" class="form-control border-inner" placeholder="Chia sẻ trải nghiệm mua hàng của bạn..." required></textarea>
-                                    </div>
-                                    <div class="d-grid gap-2">
-                                        <button type="submit" name="feedback" class="btn btn-primary border-inner">
-                                            <i class="fa fa-paper-plane"></i> Gửi Phản Hồi
-                                        </button>
-                                    </div>
-                                </form>
                             </div>
 
                             <div class="row g-3">
