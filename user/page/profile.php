@@ -118,7 +118,7 @@ $conn->close();
                     <i class="bi bi-envelope fs-1 text-primary me-3"></i>
                     <div class="text-start">
                         <h6 class="text-uppercase mb-1">Email Us</h6>
-                        <span>info@example.com</span>
+                        <span>info@itc.edu.vn</span>
                     </div>
                 </div>
             </div>
@@ -134,7 +134,7 @@ $conn->close();
                     <i class="bi bi-phone-vibrate fs-1 text-primary me-3"></i>
                     <div class="text-start">
                         <h6 class="text-uppercase mb-1">Call Us</h6>
-                        <span>+012 345 6789</span>
+                        <span>(028) 397 349 83</span>
                     </div>
                 </div>
             </div>
