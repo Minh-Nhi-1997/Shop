@@ -39,7 +39,7 @@
                     <i class="bi bi-envelope fs-1 text-primary me-3"></i>
                     <div class="text-start">
                         <h6 class="text-uppercase mb-1">Email Us</h6>
-                        <span>info@example.com</span>
+                        <span>info@itc.edu.vn</span>
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                     <i class="bi bi-phone-vibrate fs-1 text-primary me-3"></i>
                     <div class="text-start">
                         <h6 class="text-uppercase mb-1">Call Us</h6>
-                        <span>+012 345 6789</span>
+                        <span>(028) 397 349 83</span>
                     </div>
                 </div>
             </div>
@@ -91,21 +91,21 @@
                     <div class="bg-primary border-inner text-center text-white p-5">
                         <i class="bi bi-geo-alt fs-1 text-white"></i>
                         <h6 class="text-uppercase my-2">Our Office</h6>
-                        <span>123 Street, New York, USA</span>
+                        <span>12 Trinh Dinh Thao, Tan Phu, HCM City, Viet Nam</span>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="bg-primary border-inner text-center text-white p-5">
                         <i class="bi bi-envelope-open fs-1 text-white"></i>
                         <h6 class="text-uppercase my-2">Email Us</h6>
-                        <span>info@example.com</span>
+                        <span>info@itc.edu.vn</span>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="bg-primary border-inner text-center text-white p-5">
                         <i class="bi bi-phone-vibrate fs-1 text-white"></i>
                         <h6 class="text-uppercase my-2">Call Us</h6>
-                        <span>+012 345 6789</span>
+                        <span>(028) 397 349 83</span>
                     </div>
                 </div>
             </div>
@@ -155,15 +155,15 @@
                             <h4 class="text-primary text-uppercase mb-4">Get In Touch</h4>
                             <div class="d-flex mb-2">
                                 <i class="bi bi-geo-alt text-primary me-2"></i>
-                                <p class="mb-0">123 Street, New York, USA</p>
+                                <p class="mb-0">12 Trinh Dinh Thao, Tan Phu, HCM City, Viet Nam</p>
                             </div>
                             <div class="d-flex mb-2">
                                 <i class="bi bi-envelope-open text-primary me-2"></i>
-                                <p class="mb-0">info@example.com</p>
+                                <p class="mb-0">info@itc.edu.vn</p>
                             </div>
                             <div class="d-flex mb-2">
                                 <i class="bi bi-telephone text-primary me-2"></i>
-                                <p class="mb-0">+012 345 67890</p>
+                                <p class="mb-0">(028) 397 349 83</p>
                             </div>
                             <div class="d-flex mt-4">
                                 <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 me-2" href="#"><i class="fab fa-twitter fw-normal"></i></a>
