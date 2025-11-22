@@ -1,20 +1,12 @@
 <?php
 session_start();
-require './connect-db.php';
+require '../../user/page/connect-db.php';
 
 // Auth simple
-if (!isset($_SESSION['customer_id'])) {
-    header('Location: login.html');
+if (!isset($_SESSION['admin_id'])) {
+    header('Location: admin_login.php'); // login admin riêng
     exit;
 }
-// Kiểm tra phân quyền admin
-if (($_SESSION['role'] ?? '') !== 'admin') {
-    // Nếu là customer hoặc role khác admin
-    echo "<h2 style='color:red; text-align:center; margin-top:50px;'>Bạn không có quyền truy cập trang này!</h2>";
-    echo "<p style='text-align:center;'><a href='index.php'>Quay lại trang chủ</a></p>";
-    exit;
-}
-
 // Handle POST actions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
@@ -30,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!empty($_FILES['image']['name'])) {
             $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
             $imageName = uniqid('prod_') . '.' . $ext;
-            move_uploaded_file($_FILES['image']['tmp_name'], '../assests/img/' . $imageName);
+            move_uploaded_file($_FILES['image']['tmp_name'], '../../assests/img/' . $imageName);
         }
 
         $stmt = $conn->prepare("INSERT INTO products (product_name, category_id, price, stock, description, image, created_at) VALUES (?, ?, ?, ?, ?, ?, NOW())");
@@ -50,12 +42,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!empty($_FILES['image']['name'])) {
             $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
             $newImageName = uniqid('prod_') . '.' . $ext;
-            $uploadPath = '../assests/img/' . $newImageName;
+            $uploadPath = '../../assests/img/' . $newImageName;
 
             if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadPath)) {
                 // Xóa ảnh cũ nếu có và không phải default.jpg
                 if ($imageName && $imageName !== 'default.jpg') {
-                    $oldFilePath = '../assests/img/' . $imageName;
+                    $oldFilePath = '../../assests/img/' . $imageName;
                     if (file_exists($oldFilePath)) {
                         unlink($oldFilePath);
                     }
@@ -90,7 +82,7 @@ if (isset($_GET['delete_id'])) {
 
         // 2. Xóa file ảnh nếu tồn tại và không phải default.jpg
         if ($imageName && $imageName !== 'default.jpg') {
-            $filePath = '../assests/img/' . $imageName;
+            $filePath = '../../assests/img/' . $imageName;
             if (file_exists($filePath)) {
                 unlink($filePath); // xóa file vật lý
             }
@@ -145,8 +137,8 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="../assests/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assests/css/style.css" rel="stylesheet">
+    <link href="../../assests/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../assests/css/style.css" rel="stylesheet">
     <style>
         .sidebar {
             background: #2c3e50;
@@ -222,7 +214,7 @@ $conn->close();
                             <div class="product-card">
                                 <div class="row align-items-center">
                                     <div class="col-md-2">
-                                        <img src="../assests/img/<?= htmlspecialchars($p['image'] ?? 'default.jpg'); ?>" alt="<?= htmlspecialchars($p['product_name']); ?>" style="width:100%; height:80px; object-fit:cover; border-radius:5px;">
+                                        <img src="../../assests/img/<?= htmlspecialchars($p['image'] ?? 'default.jpg'); ?>" alt="<?= htmlspecialchars($p['product_name']); ?>" style="width:100%; height:80px; object-fit:cover; border-radius:5px;">
                                     </div>
                                     <div class="col-md-6">
                                         <h6><?= htmlspecialchars($p['product_name']); ?></h6>
@@ -359,7 +351,7 @@ $conn->close();
             $('#productStock').val(btn.data('stock'));
             $('#oldImage').val(btn.data('image'));
             if (btn.data('image')) {
-                $('#previewImage').attr('src', '../assests/img/' + btn.data('image')).show();
+                $('#previewImage').attr('src', '../../assests/img/' + btn.data('image')).show();
             } else {
                 $('#previewImage').hide();
             }
@@ -385,7 +377,7 @@ $conn->close();
             if (!confirm('Bạn chắc chắn muốn xóa "' + $(this).data('name') + '" ?')) e.preventDefault();
         });
     </script>
-    <script src="../assests/js/active.js"></script>
+    <script src="../../assests/js/active.js"></script>
 </body>
 
 </html>
