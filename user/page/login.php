@@ -11,8 +11,8 @@ if ($login_user === '' || $login_pass === '') {
     die("Vui lòng nhập email và mật khẩu!");
 }
 
-// Không SELECT role nữa
-$sql = "SELECT customer_id, full_name, email, password_hash
+// Lấy thông tin khách hàng từ database
+$sql = "SELECT customer_id, full_name, email, phone, address, password_hash
         FROM customers
         WHERE email = ? LIMIT 1";
 
@@ -37,14 +37,18 @@ if (!password_verify($login_pass, $row['password_hash'])) {
     die("Email hoặc mật khẩu không đúng!");
 }
 
-// Đăng nhập thành công
+// Đăng nhập thành công, lưu thông tin cần thiết vào session
 $_SESSION['customer_id'] = $row['customer_id'];
-$_SESSION['full_name']  = $row['full_name'];
+$_SESSION['full_name']   = $row['full_name'];
+$_SESSION['email']       = $row['email'];
+$_SESSION['phone']       = $row['phone'];
+$_SESSION['address']     = $row['address'];
 
-// Không phân quyền nữa → tất cả vào index.php
+// Chuyển hướng đến trang chính
 header("Location: index.php");
 exit;
 
+// Đóng kết nối
 $stmt->close();
 $conn->close();
 ?>
