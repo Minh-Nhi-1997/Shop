@@ -26,7 +26,7 @@ $conn->close();
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="../../assests/img/favicon.ico" rel="icon">
+    <link href="../../assets/img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,13 +38,13 @@ $conn->close();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="../../assests/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../../assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="../../assests/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="../../assests/css/style.css" rel="stylesheet">
+    <link href="../../assets/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -141,7 +141,7 @@ $conn->close();
             <div class="row gx-5">
                 <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 400px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100" src="../../assests/img/about.jpg" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100" src="../../assets/img/about.jpg" style="object-fit: cover;">
                     </div>
                 </div>
                 <div class="col-lg-6 pb-5">
@@ -249,8 +249,12 @@ $conn->close();
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assests/img/cake-1.jpg" alt="" style="width: 150px; height: 85px;">
+                                        <img class="img-fluid" src="../../assets/img/cake-1.jpg" alt="" style="width: 150px; height: 85px;">
                                         <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
+                                        <button class="cart-btn">
+                                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                                        </button>
+
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
                                         <h5 class="text-uppercase">Birthday Cake</h5>
@@ -261,8 +265,11 @@ $conn->close();
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assests/img/cake-1.jpg" alt="" style="width: 150px; height: 85px;">
+                                        <img class="img-fluid" src="../../assets/img/cake-1.jpg" alt="" style="width: 150px; height: 85px;">
                                         <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
+                                        <button class="cart-btn">
+                                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                                        </button>
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
                                         <h5 class="text-uppercase">Birthday Cake</h5>
@@ -273,8 +280,11 @@ $conn->close();
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assests/img/cake-1.jpg" alt="" style="width: 150px; height: 85px;">
+                                        <img class="img-fluid" src="../../assets/img/cake-1.jpg" alt="" style="width: 150px; height: 85px;">
                                         <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
+                                        <button class="cart-btn">
+                                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                                        </button>
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
                                         <h5 class="text-uppercase">Birthday Cake</h5>
@@ -285,8 +295,11 @@ $conn->close();
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assests/img/cake-1.jpg" alt="" style="width: 150px; height: 85px;">
+                                        <img class="img-fluid" src="../../assets/img/cake-1.jpg" alt="" style="width: 150px; height: 85px;">
                                         <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
+                                        <button class="cart-btn">
+                                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                                        </button>
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
                                         <h5 class="text-uppercase">Birthday Cake</h5>
@@ -297,8 +310,11 @@ $conn->close();
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assests/img/cake-1.jpg" alt="" style="width: 150px; height: 85px;">
+                                        <img class="img-fluid" src="../../assets/img/cake-1.jpg" alt="" style="width: 150px; height: 85px;">
                                         <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
+                                        <button class="cart-btn">
+                                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                                        </button>
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
                                         <h5 class="text-uppercase">Birthday Cake</h5>
@@ -309,8 +325,11 @@ $conn->close();
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assests/img/cake-1.jpg" alt="" style="width: 150px; height: 85px;">
+                                        <img class="img-fluid" src="../../assets/img/cake-1.jpg" alt="" style="width: 150px; height: 85px;">
                                         <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
+                                        <button class="cart-btn">
+                                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                                        </button>
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
                                         <h5 class="text-uppercase">Birthday Cake</h5>
@@ -325,8 +344,11 @@ $conn->close();
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assests/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
+                                        <img class="img-fluid" src="../../assets/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
                                         <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
+                                        <button class="cart-btn">
+                                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                                        </button>
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
                                         <h5 class="text-uppercase">Wedding Cake</h5>
@@ -337,8 +359,11 @@ $conn->close();
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assests/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
+                                        <img class="img-fluid" src="../../assets/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
                                         <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
+                                        <button class="cart-btn">
+                                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                                        </button>
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
                                         <h5 class="text-uppercase">Wedding Cake</h5>
@@ -349,8 +374,11 @@ $conn->close();
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assests/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
+                                        <img class="img-fluid" src="../../assets/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
                                         <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
+                                        <button class="cart-btn">
+                                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                                        </button>
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
                                         <h5 class="text-uppercase">Wedding Cake</h5>
@@ -361,8 +389,11 @@ $conn->close();
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assests/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
+                                        <img class="img-fluid" src="../../assets/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
                                         <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
+                                        <button class="cart-btn">
+                                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                                        </button>
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
                                         <h5 class="text-uppercase">Wedding Cake</h5>
@@ -373,8 +404,11 @@ $conn->close();
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assests/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
+                                        <img class="img-fluid" src="../../assets/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
                                         <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
+                                        <button class="cart-btn">
+                                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                                        </button>
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
                                         <h5 class="text-uppercase">Wedding Cake</h5>
@@ -385,8 +419,11 @@ $conn->close();
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assests/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
+                                        <img class="img-fluid" src="../../assets/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
                                         <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
+                                        <button class="cart-btn">
+                                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                                        </button>
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
                                         <h5 class="text-uppercase">Wedding Cake</h5>
@@ -401,8 +438,11 @@ $conn->close();
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assests/img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
+                                        <img class="img-fluid" src="../../assets/img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
                                         <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
+                                        <button class="cart-btn">
+                                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                                        </button>
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
                                         <h5 class="text-uppercase">Custom Cake</h5>
@@ -413,8 +453,11 @@ $conn->close();
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assests/img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
+                                        <img class="img-fluid" src="../../assets/img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
                                         <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
+                                        <button class="cart-btn">
+                                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                                        </button>
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
                                         <h5 class="text-uppercase">Custom Cake</h5>
@@ -425,8 +468,11 @@ $conn->close();
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assests/img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
+                                        <img class="img-fluid" src="../../assets/img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
                                         <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
+                                        <button class="cart-btn">
+                                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                                        </button>
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
                                         <h5 class="text-uppercase">Custom Cake</h5>
@@ -437,8 +483,11 @@ $conn->close();
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assests/img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
+                                        <img class="img-fluid" src="../../assets/img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
                                         <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
+                                        <button class="cart-btn">
+                                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                                        </button>
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
                                         <h5 class="text-uppercase">Custom Cake</h5>
@@ -449,8 +498,11 @@ $conn->close();
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assests/img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
+                                        <img class="img-fluid" src="../../assets/img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
                                         <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
+                                        <button class="cart-btn">
+                                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                                        </button>
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
                                         <h5 class="text-uppercase">Custom Cake</h5>
@@ -461,8 +513,11 @@ $conn->close();
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="../../assests/img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
+                                        <img class="img-fluid" src="../../assets/img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
                                         <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
+                                        <button class="cart-btn">
+                                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                                        </button>
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
                                         <h5 class="text-uppercase">Custom Cake</h5>
@@ -525,7 +580,7 @@ $conn->close();
                 <div class="col-lg-4 col-md-6">
                     <div class="team-item">
                         <div class="position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="../../assests/img/team-1.jpg" alt="">
+                            <img class="img-fluid w-100" src="../../assets/img/team-1.jpg" alt="">
                             <div class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
                                 <div class="d-flex align-items-center justify-content-start">
                                     <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
@@ -543,7 +598,7 @@ $conn->close();
                 <div class="col-lg-4 col-md-6">
                     <div class="team-item">
                         <div class="position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="../../assests/img/team-2.jpg" alt="">
+                            <img class="img-fluid w-100" src="../../assets/img/team-2.jpg" alt="">
                             <div class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
                                 <div class="d-flex align-items-center justify-content-start">
                                     <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
@@ -561,7 +616,7 @@ $conn->close();
                 <div class="col-lg-4 col-md-6">
                     <div class="team-item">
                         <div class="position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="../../assests/img/team-3.jpg" alt="">
+                            <img class="img-fluid w-100" src="../../assets/img/team-3.jpg" alt="">
                             <div class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
                                 <div class="d-flex align-items-center justify-content-start">
                                     <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
@@ -611,7 +666,7 @@ $conn->close();
             <div class="owl-carousel testimonial-carousel">
                 <div class="testimonial-item bg-dark text-white border-inner p-4">
                     <div class="d-flex align-items-center mb-3">
-                        <img class="img-fluid flex-shrink-0" src="../../assests/img/testimonial-1.jpg" style="width: 60px; height: 60px;">
+                        <img class="img-fluid flex-shrink-0" src="../../assets/img/testimonial-1.jpg" style="width: 60px; height: 60px;">
                         <div class="ps-3">
                             <h4 class="text-primary text-uppercase mb-1">Client Name</h4>
                             <span>Profession</span>
@@ -622,7 +677,7 @@ $conn->close();
                 </div>
                 <div class="testimonial-item bg-dark text-white border-inner p-4">
                     <div class="d-flex align-items-center mb-3">
-                        <img class="img-fluid flex-shrink-0" src="../../assests/img/testimonial-2.jpg" style="width: 60px; height: 60px;">
+                        <img class="img-fluid flex-shrink-0" src="../../assets/img/testimonial-2.jpg" style="width: 60px; height: 60px;">
                         <div class="ps-3">
                             <h4 class="text-primary text-uppercase mb-1">Client Name</h4>
                             <span>Profession</span>
@@ -633,7 +688,7 @@ $conn->close();
                 </div>
                 <div class="testimonial-item bg-dark text-white border-inner p-4">
                     <div class="d-flex align-items-center mb-3">
-                        <img class="img-fluid flex-shrink-0" src="../../assests/img/testimonial-3.jpg" style="width: 60px; height: 60px;">
+                        <img class="img-fluid flex-shrink-0" src="../../assets/img/testimonial-3.jpg" style="width: 60px; height: 60px;">
                         <div class="ps-3">
                             <h4 class="text-primary text-uppercase mb-1">Client Name</h4>
                             <span>Profession</span>
@@ -644,7 +699,7 @@ $conn->close();
                 </div>
                 <div class="testimonial-item bg-dark text-white border-inner p-4">
                     <div class="d-flex align-items-center mb-3">
-                        <img class="img-fluid flex-shrink-0" src="../../assests/img/testimonial-4.jpg" style="width: 60px; height: 60px;">
+                        <img class="img-fluid flex-shrink-0" src="../../assets/img/testimonial-4.jpg" style="width: 60px; height: 60px;">
                         <div class="ps-3">
                             <h4 class="text-primary text-uppercase mb-1">Client Name</h4>
                             <span>Profession</span>
@@ -739,13 +794,13 @@ $conn->close();
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assests/lib/easing/easing.min.js"></script>
-    <script src="../../assests/lib/waypoints/waypoints.min.js"></script>
-    <script src="../../assests/lib/counterup/counterup.min.js"></script>
-    <script src="../../assests/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../../assets/lib/easing/easing.min.js"></script>
+    <script src="../../assets/lib/waypoints/waypoints.min.js"></script>
+    <script src="../../assets/lib/counterup/counterup.min.js"></script>
+    <script src="../../assets/lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="../../assests/js/main.js"></script>
+    <script src="../../assets/js/main.js"></script>
 </body>
 
 </html>

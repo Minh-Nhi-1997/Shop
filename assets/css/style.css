@@ -313,3 +313,45 @@ h6,
     background: linear-gradient(rgba(43, 40, 37, .5), rgba(43, 40, 37, .5)), url(../img/bg.jpg) center center no-repeat;
     background-size: cover;
 }
+.flex-shrink-0 .cart-btn {
+    background-color: #ff7b00 !important;
+    color: #fff !important;
+    padding: 8px 15px !important;
+    border: none !important;
+    border-radius: 5px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+/* Nút Add to Cart */
+.cart-btn {
+    margin-top: 5px;
+    padding: 8px 15px;
+    background-color: #ff7b00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.3s;
+}
+
+/* Icon trong nút */
+.cart-btn i {
+    font-size: 16px;
+}
+
+/* Hover */
+.cart-btn:hover {
+    background-color: #e56d00;
+    color: #fff;
+}
+
+/* Tăng ưu tiên khi bị Bootstrap ghi đè */
+.product-item .cart-btn {
+    background-color: #ff7b00 !important;
+    color: white !important;
+}
