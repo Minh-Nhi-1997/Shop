@@ -1,185 +1,159 @@
 <?php
 session_start();
 require './connect-db.php';
+
 // Nếu chưa đăng nhập, redirect tới login
 if (!isset($_SESSION['customer_id'])) {
     header("Location: login.html");
     exit;
 }
+
+// Lấy danh mục
+$categories = [];
+$resCat = $conn->query("SELECT * FROM categories ORDER BY category_id ASC");
+while ($row = $resCat->fetch_assoc()) {
+    $categories[$row['category_id']] = $row['category_name'];
+}
+
+// Lấy category từ GET (nếu có)
+$filterCategory = isset($_GET['category']) ? intval($_GET['category']) : 0;
+
+// Phân trang
+$limit = 6; // số sản phẩm/trang
+$page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
+$start = ($page - 1) * $limit;
+
+// Tổng sản phẩm theo filter
+if ($filterCategory) {
+    $stmtTotal = $conn->prepare("SELECT COUNT(*) AS total FROM products WHERE category_id=?");
+    $stmtTotal->bind_param("i", $filterCategory);
+} else {
+    $stmtTotal = $conn->prepare("SELECT COUNT(*) AS total FROM products");
+}
+$stmtTotal->execute();
+$total_products = $stmtTotal->get_result()->fetch_assoc()['total'];
+$total_pages = ceil($total_products / $limit);
+$stmtTotal->close();
+
+// Lấy sản phẩm theo filter + phân trang
+if ($filterCategory) {
+    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id=? ORDER BY product_id ASC LIMIT ?, ?");
+    $stmt->bind_param("iii", $filterCategory, $start, $limit);
+} else {
+    $stmt = $conn->prepare("SELECT * FROM products ORDER BY product_id ASC LIMIT ?, ?");
+    $stmt->bind_param("ii", $start, $limit);
+}
+$stmt->execute();
+$products_result = $stmt->get_result();
+$products = [];
+while ($row = $products_result->fetch_assoc()) {
+    $products[] = $row;
+}
+$stmt->close();
+$conn->close();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-    <meta charset="utf-8">
-    <title>CakeZone - Cake Shop Website Template</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
-
-    <!-- Favicon -->
-    <link href="../../assets/img/favicon.ico" rel="icon">
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Oswald:wght@500;600;700&family=Pacifico&display=swap" rel="stylesheet"> 
-
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="../../assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Template Stylesheet -->
-    <link href="../../assets/css/style.css" rel="stylesheet">
+<meta charset="utf-8">
+<title>Menu & Pricing - CakeZone</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../assets/css/style.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 </head>
-
 <body>
-    <!-- Navbar Start -->
-    <?php include 'header.php'; ?>
-    <!-- Navbar End -->
+<?php include 'header.php'; ?>
 
+<div class="container-fluid bg-dark bg-img p-5 mb-5 text-center">
+    <h1 class="display-4 text-uppercase text-white">Menu & Pricing</h1>
+    <a href="index.php" class="text-white">Home</a>
+    <i class="far fa-square text-primary px-2"></i>
+    <span class="text-white">Menu & Pricing</span>
+</div>
 
-    <!-- Page Header Start -->
-    <div class="container-fluid bg-dark bg-img p-5 mb-5">
-        <div class="row">
-            <div class="col-12 text-center">
-                <h1 class="display-4 text-uppercase text-white">Menu & Pricing</h1>
-                <a href="">Home</a>
-                <i class="far fa-square text-primary px-2"></i>
-                <a href="">Menu & Pricing</a>
-            </div>
-        </div>
+<div class="container py-5">
+    <div class="section-title text-center mx-auto mb-5 pb-3" style="max-width:600px;">
+        <h2 class="text-primary font-secondary">Menu & Pricing</h2>
+        <h1 class="display-4 text-uppercase">Explore Our Cakes</h1>
     </div>
-    <!-- Page Header End -->
 
-
-    <!-- Products Start -->
-    <div class="container-fluid about py-5">
-        <div class="container">
-            <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
-                <h2 class="text-primary font-secondary">Menu & Pricing</h2>
-                <h1 class="display-4 text-uppercase">Explore Our Cakes</h1>
-            </div>
+    <div class="tab-class text-center">
+        <ul class="nav nav-pills d-inline-flex justify-content-center bg-dark text-uppercase border-inner p-4 mb-5">
             <?php
+            $first = true;
+            foreach ($categories as $cat_id => $cat_name): ?>
+                <li class="nav-item">
+                    <a class="nav-link text-white <?= ($filterCategory==$cat_id || ($filterCategory==0 && $first)) ? 'active' : '' ?>" 
+                       data-category="<?= $cat_id ?>" href="#">
+                        <?= htmlspecialchars($cat_name) ?>
+                    </a>
+                </li>
+            <?php $first = false; endforeach; ?>
+        </ul>
 
-            // Lấy tất cả category
-            $categories = [];
-            $result = $conn->query("SELECT * FROM categories ORDER BY category_id ASC");
-            while ($row = $result->fetch_assoc()) {
-                $categories[$row['category_id']] = $row['category_name'];
-            }
-
-            // Lấy tất cả sản phẩm
-            $products_by_category = [];
-            $result = $conn->query("SELECT * FROM products ORDER BY product_id ASC");
-            while ($row = $result->fetch_assoc()) {
-                $cat_id = $row['category_id'];
-                $products_by_category[$cat_id][] = $row;
-            }
-            ?>
-
-            <div class="tab-class text-center">
-                <ul class="nav nav-pills d-inline-flex justify-content-center bg-dark text-uppercase border-inner p-4 mb-5">
-                    <?php
-                    $first = true;
-                    foreach ($categories as $cat_id => $cat_name): ?>
-                        <li class="nav-item">
-                            <a class="nav-link text-white <?= $first ? 'active' : '' ?>" data-bs-toggle="pill" href="#tab-<?= $cat_id ?>">
-                                <?= htmlspecialchars($cat_name) ?>
-                            </a>
-                        </li>
-                    <?php $first = false;
-                    endforeach; ?>
-                </ul>
-
-                <div class="tab-content">
-                    <?php
-                    $first = true;
-                    foreach ($categories as $cat_id => $cat_name): ?>
-                        <div id="tab-<?= $cat_id ?>" class="tab-pane fade p-0 <?= $first ? 'show active' : '' ?>">
-                            <div class="row g-3">
-                                <?php
-                                if (!empty($products_by_category[$cat_id])):
-                                    foreach ($products_by_category[$cat_id] as $product):
-                                ?>
-                                        <div class="col-lg-6">
-                                            <div class="d-flex h-100">
-                                                <div class="flex-shrink-0 text-center">
-                                                    <img class="img-fluid" src="../../assets/img/<?= htmlspecialchars($product['image']) ?>" alt="" style="width: 150px; height: 85px;">
-                                                    <h4 class="bg-dark text-primary p-2 m-0"><?= number_format($product['price'], 0, ',', '.') ?>₫</h4>
-                                                    <form method="post" action="add-to-cart.php">
-                                                        <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
-                                                        <button type="submit" class="btn btn-primary cart-btn mt-2">
-                                                            <i class="fa fa-shopping-cart"></i> Add to Cart
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4 flex-grow-1">
-                                                    <h5 class="text-uppercase"><?= htmlspecialchars($product['product_name']) ?></h5>
-                                                    <span><?= htmlspecialchars($product['description']) ?></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <?php
-                                    endforeach;
-                                else: ?>
-                                    <p class="text-center">Hiện chưa có sản phẩm trong danh mục này.</p>
-                                <?php endif; ?>
+        <div class="row g-3">
+            <?php if (!empty($products)): ?>
+                <?php foreach ($products as $product): ?>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="d-flex h-100">
+                            <div class="flex-shrink-0 text-center">
+                                <img class="img-fluid" src="../../assets/img/<?= htmlspecialchars($product['image']) ?>" alt="" style="width:150px; height:85px;">
+                                <h4 class="bg-dark text-primary p-2 m-0"><?= number_format($product['price'],0,',','.') ?>₫</h4>
+                                <form method="post" action="add-to-cart.php">
+                                    <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+                                    <button type="submit" class="btn btn-primary cart-btn mt-2"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                </form>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4 flex-grow-1">
+                                <h5 class="text-uppercase"><?= htmlspecialchars($product['product_name']) ?></h5>
+                                <span><?= htmlspecialchars($product['description']) ?></span>
                             </div>
                         </div>
-                    <?php $first = false;
-                    endforeach; ?>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <!-- Products End -->
-
-
-    <!-- Offer Start -->
-    <div class="container-fluid bg-offer my-5 py-5">
-        <div class="container py-5">
-            <div class="row gx-5 justify-content-center">
-                <div class="col-lg-7 text-center">
-                    <div class="section-title position-relative text-center mx-auto mb-4 pb-3" style="max-width: 600px;">
-                        <h2 class="text-primary font-secondary">Special Kombo Pack</h2>
-                        <h1 class="display-4 text-uppercase text-white">Super Crispy Cakes</h1>
                     </div>
-                    <p class="text-white mb-4">Eirmod sed tempor lorem ut dolores sit kasd ipsum. Dolor ea et dolore et at sea ea at dolor justo ipsum duo rebum sea. Eos vero eos vero ea et dolore eirmod et. Dolores diam duo lorem. Elitr ut dolores magna sit. Sea dolore sed et.</p>
-                    <a href="" class="btn btn-primary border-inner py-3 px-5 me-3">Shop Now</a>
-                    <a href="" class="btn btn-dark border-inner py-3 px-5">Read More</a>
-                </div>
-            </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class="text-center">Hiện chưa có sản phẩm trong danh mục này.</p>
+            <?php endif; ?>
         </div>
+
+        <!-- Phân trang -->
+        <?php if($total_pages > 1): ?>
+        <div class="d-flex justify-content-center mt-4">
+            <nav>
+                <ul class="pagination">
+                    <?php if ($page > 1): ?>
+                        <li class="page-item"><a class="page-link" href="?page=<?= $page-1 ?>&category=<?= $filterCategory ?>">« Trước</a></li>
+                    <?php endif; ?>
+                    <?php for ($i=1;$i<=$total_pages;$i++): ?>
+                        <li class="page-item <?= $i==$page?'active':'' ?>">
+                            <a class="page-link" href="?page=<?= $i ?>&category=<?= $filterCategory ?>"><?= $i ?></a>
+                        </li>
+                    <?php endfor; ?>
+                    <?php if ($page < $total_pages): ?>
+                        <li class="page-item"><a class="page-link" href="?page=<?= $page+1 ?>&category=<?= $filterCategory ?>">Tiếp »</a></li>
+                    <?php endif; ?>
+                </ul>
+            </nav>
+        </div>
+        <?php endif; ?>
+
     </div>
-    <!-- Offer End -->
-    
+</div>
 
-    <!-- Footer Start -->
-    <?php include 'footer.php'; ?>
-    <!-- Footer End -->
+<?php include 'footer.php'; ?>
 
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-primary border-inner py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assets/lib/easing/easing.min.js"></script>
-    <script src="../../assets/lib/waypoints/waypoints.min.js"></script>
-    <script src="../../assets/lib/counterup/counterup.min.js"></script>
-    <script src="../../assets/lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="../../assets/js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('.nav-link[data-category]').on('click', function(e){
+        e.preventDefault();
+        const categoryId = $(this).data('category');
+        // Chuyển sang trang 1 của category được chọn
+        window.location.href = '?page=1&category=' + categoryId;
+    });
+});
+</script>
 </body>
-
 </html>

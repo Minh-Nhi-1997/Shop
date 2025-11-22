@@ -243,7 +243,7 @@ $conn->close();
                                     </div>
                                     <div class="ms-3">
                                         <h6 class="text-white mb-1">Lịch Sử Đơn Hàng</h6>
-                                        <a href="orders.php" class="text-primary small">Xem các đơn hàng của bạn</a>
+                                        <a href="lichSuDonHang.php" class="text-primary small">Xem các đơn hàng của bạn</a>
                                     </div>
                                 </div>
                             </div>
