@@ -142,9 +142,6 @@ $stmt->close();
                                                             </tr>
                                                         </tbody>
                                                     </table>
-                                                    <div class="mt-3 text-end">
-                                                        <a href="order-invoice.php?order_id=<?= $oid ?>" class="btn btn-sm btn-primary">In hóa đơn</a>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </td>

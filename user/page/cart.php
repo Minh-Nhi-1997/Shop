@@ -127,7 +127,7 @@ $conn->close();
 
                 <?php if ($can_checkout): ?>
                     <a href="checkout.php" class="btn btn-success">
-                        <i class="fa fa-credit-card"></i> Thanh toán
+                        <i class="fa fa-credit-card"></i> Đặc hàng
                     </a>
                 <?php else: ?>
                     <button class="btn btn-secondary" disabled>
