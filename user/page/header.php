@@ -28,7 +28,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 <i class="bi bi-envelope fs-1 text-primary me-3"></i>
                 <div class="text-start">
                     <h6 class="text-uppercase mb-1">Email Us</h6>
-                    <span>nfo@itc.edu.vn</span>
+                    <span>info@itc.edu.vn</span>
                 </div>
             </div>
         </div>
