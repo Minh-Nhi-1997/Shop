@@ -355,3 +355,26 @@ h6,
     background-color: #ff7b00 !important;
     color: white !important;
 }
+
+/* Dòng chứa tên + wishlist icon */
+.title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+/* Trái tim */
+.wishlist-small-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
