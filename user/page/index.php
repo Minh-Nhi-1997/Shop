@@ -364,8 +364,8 @@ $conn->close();
                             </div>
                         </div>
                         <div class="bg-dark border-inner text-center p-4">
-                            <h4 class="text-uppercase text-primary">Full Name</h4>
-                            <p class="text-white m-0">Designation</p>
+                            <h4 class="text-uppercase text-primary">Huỳnh Minh NHí</h4>
+                            <p class="text-white m-0">Đầu Bếp chính</p>
                         </div>
                     </div>
                 </div>
@@ -382,8 +382,8 @@ $conn->close();
                             </div>
                         </div>
                         <div class="bg-dark border-inner text-center p-4">
-                            <h4 class="text-uppercase text-primary">Full Name</h4>
-                            <p class="text-white m-0">Designation</p>
+                            <h4 class="text-uppercase text-primary">Lâm Tăng Minh Triết</h4>
+                            <p class="text-white m-0">Phụ Trách lò Nướng</p>
                         </div>
                     </div>
                 </div>
@@ -400,8 +400,8 @@ $conn->close();
                             </div>
                         </div>
                         <div class="bg-dark border-inner text-center p-4">
-                            <h4 class="text-uppercase text-primary">Full Name</h4>
-                            <p class="text-white m-0">Designation</p>
+                            <h4 class="text-uppercase text-primary">Võ Hoàng Nam</h4>
+                            <p class="text-white m-0">Phụ Trách Dụng Cụ</p>
                         </div>
                     </div>
                 </div>
