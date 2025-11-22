@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../../user/page/connect-db.php'; // chỉnh đường dẫn tới file kết nối DB
+require '../../user/page/connect-db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $full_name = trim($_POST['full_name'] ?? '');

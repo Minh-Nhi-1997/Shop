@@ -1,17 +1,10 @@
 <?php
 session_start();
-require './connect-db.php'; // Kết nối MySQLi
+require '../../user/page/connect-db.php';
 
 // Kiểm tra đăng nhập
-if (!isset($_SESSION['customer_id'])) {
-    header('Location: login.html');
-    exit;
-}
-// Kiểm tra phân quyền admin
-if (($_SESSION['role'] ?? '') !== 'admin') {
-    // Nếu là customer hoặc role khác admin
-    echo "<h2 style='color:red; text-align:center; margin-top:50px;'>Bạn không có quyền truy cập trang này!</h2>";
-    echo "<p style='text-align:center;'><a href='index.php'>Quay lại trang chủ</a></p>";
+if (!isset($_SESSION['admin_id'])) {
+    header('Location: admin_login.php'); // login admin riêng
     exit;
 }
 
@@ -94,7 +87,7 @@ $conn->close();
     <title>Quản lý khách hàng - Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="../assests/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../assests/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .sidebar {
             background: #2c3e50;
@@ -314,7 +307,7 @@ $conn->close();
             if (!confirm('Bạn chắc chắn muốn xóa "' + $(this).data('name') + '" ?')) e.preventDefault();
         });
     </script>
-    <script src="../assests/js/active.js"></script>
+    <script src="../../assests/js/active.js"></script>
 
 </body>
 
