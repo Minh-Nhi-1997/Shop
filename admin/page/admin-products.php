@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!empty($_FILES['image']['name'])) {
             $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
             $imageName = uniqid('prod_') . '.' . $ext;
-            move_uploaded_file($_FILES['image']['tmp_name'], '../../assests/img/' . $imageName);
+            move_uploaded_file($_FILES['image']['tmp_name'], '../../assets/img/' . $imageName);
         }
 
         $stmt = $conn->prepare("INSERT INTO products (product_name, category_id, price, stock, description, image, created_at) VALUES (?, ?, ?, ?, ?, ?, NOW())");
@@ -42,12 +42,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!empty($_FILES['image']['name'])) {
             $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
             $newImageName = uniqid('prod_') . '.' . $ext;
-            $uploadPath = '../../assests/img/' . $newImageName;
+            $uploadPath = '../../assets/img/' . $newImageName;
 
             if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadPath)) {
                 // Xóa ảnh cũ nếu có và không phải default.jpg
                 if ($imageName && $imageName !== 'default.jpg') {
-                    $oldFilePath = '../../assests/img/' . $imageName;
+                    $oldFilePath = '../../assets/img/' . $imageName;
                     if (file_exists($oldFilePath)) {
                         unlink($oldFilePath);
                     }
@@ -82,7 +82,7 @@ if (isset($_GET['delete_id'])) {
 
         // 2. Xóa file ảnh nếu tồn tại và không phải default.jpg
         if ($imageName && $imageName !== 'default.jpg') {
-            $filePath = '../../assests/img/' . $imageName;
+            $filePath = '../../assets/img/' . $imageName;
             if (file_exists($filePath)) {
                 unlink($filePath); // xóa file vật lý
             }
@@ -137,8 +137,8 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="../../assests/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../assests/css/style.css" rel="stylesheet">
+    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../assets/css/style.css" rel="stylesheet">
     <style>
         .sidebar {
             background: #2c3e50;
@@ -214,7 +214,7 @@ $conn->close();
                             <div class="product-card">
                                 <div class="row align-items-center">
                                     <div class="col-md-2">
-                                        <img src="../../assests/img/<?= htmlspecialchars($p['image'] ?? 'default.jpg'); ?>" alt="<?= htmlspecialchars($p['product_name']); ?>" style="width:100%; height:80px; object-fit:cover; border-radius:5px;">
+                                        <img src="../../assets/img/<?= htmlspecialchars($p['image'] ?? 'default.jpg'); ?>" alt="<?= htmlspecialchars($p['product_name']); ?>" style="width:100%; height:80px; object-fit:cover; border-radius:5px;">
                                     </div>
                                     <div class="col-md-6">
                                         <h6><?= htmlspecialchars($p['product_name']); ?></h6>
@@ -351,7 +351,7 @@ $conn->close();
             $('#productStock').val(btn.data('stock'));
             $('#oldImage').val(btn.data('image'));
             if (btn.data('image')) {
-                $('#previewImage').attr('src', '../../assests/img/' + btn.data('image')).show();
+                $('#previewImage').attr('src', '../../assets/img/' + btn.data('image')).show();
             } else {
                 $('#previewImage').hide();
             }
@@ -377,7 +377,7 @@ $conn->close();
             if (!confirm('Bạn chắc chắn muốn xóa "' + $(this).data('name') + '" ?')) e.preventDefault();
         });
     </script>
-    <script src="../../assests/js/active.js"></script>
+    <script src="../../assets/js/active.js"></script>
 </body>
 
 </html>

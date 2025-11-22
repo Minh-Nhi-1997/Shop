@@ -87,7 +87,7 @@ $conn->close();
     <title>Quản lý khách hàng - Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="../../assests/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .sidebar {
             background: #2c3e50;
@@ -307,7 +307,7 @@ $conn->close();
             if (!confirm('Bạn chắc chắn muốn xóa "' + $(this).data('name') + '" ?')) e.preventDefault();
         });
     </script>
-    <script src="../../assests/js/active.js"></script>
+    <script src="../../assets/js/active.js"></script>
 
 </body>
 

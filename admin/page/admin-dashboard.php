@@ -41,8 +41,8 @@ while($row = $res->fetch_assoc()) $recentProducts[] = $row;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="../../assests/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../assests/css/style.css" rel="stylesheet">
+    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../assets/css/style.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         .sidebar { background:#2c3e50; min-height:100vh; padding:20px; }
@@ -171,6 +171,6 @@ while($row = $res->fetch_assoc()) $recentProducts[] = $row;
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../assests/js/active.js"></script>
+<script src="../assets/js/active.js"></script>
 </body>
 </html>
