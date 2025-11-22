@@ -261,7 +261,8 @@ $stmt->close();
                                 <table class="table table-sm mb-0">
                                   <thead>
                                     <tr>
-                                      <th>Sản phẩm</th>
+                                      <th>Ảnh Sản phẩm</th>
+                                      <th>Tên Sản phẩm</th>
                                       <th class="text-center">Số lượng</th>
                                       <th class="text-end">Đơn giá</th>
                                       <th class="text-end">Thành tiền</th>
@@ -269,7 +270,7 @@ $stmt->close();
                                   </thead>
                                   <tbody>
                                     <?php
-                                    $stmt3 = $conn->prepare("SELECT oi.quantity, oi.price, p.product_name FROM order_items oi JOIN products p ON oi.product_id = p.product_id WHERE oi.order_id = ?");
+                                    $stmt3 = $conn->prepare("SELECT oi.quantity, oi.price, p.product_name, p.image FROM order_items oi JOIN products p ON oi.product_id = p.product_id WHERE oi.order_id = ?");
                                     $stmt3->bind_param("i", $o['order_id']);
                                     $stmt3->execute();
                                     $res3 = $stmt3->get_result();
@@ -279,6 +280,9 @@ $stmt->close();
                                       $sum += $line;
                                     ?>
                                       <tr>
+                                        <td> <img src="../../assets/img/<?= htmlspecialchars($it['image']); ?>"
+                                            alt="<?= htmlspecialchars($it['product_name']); ?>"
+                                            style="width:50px; height:50px; object-fit:cover;"></td>
                                         <td><?= htmlspecialchars($it['product_name']); ?></td>
                                         <td class="text-center"><?= (int)$it['quantity']; ?></td>
                                         <td class="text-end"><?= number_format($it['price'], 0, ',', '.') ?>₫</td>
@@ -328,6 +332,7 @@ $stmt->close();
       });
     });
   </script>
+  <script src="../assets/js/active.js"></script>
 </body>
 
 </html>
