@@ -176,4 +176,3 @@ $conn->close();
 </body>
 </html>
 ```// filepath: /Applications/XAMPP/xamppfiles/htdocs/Shop/page/profile.php
-<?php
