@@ -3,10 +3,23 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require './connect-db.php';
+
+// Lấy số lượng giỏ hàng của user nếu đã đăng nhập
+$cart_count = 0;
+if (isset($_SESSION['customer_id'])) {
+    $uid = (int)$_SESSION['customer_id'];
+    $stmt = $conn->prepare("SELECT SUM(quantity) AS total FROM cart_items WHERE customer_id = ?");
+    $stmt->bind_param("i", $uid);
+    $stmt->execute();
+    $res = $stmt->get_result();
+    $row = $res->fetch_assoc();
+    $cart_count = (int)($row['total'] ?? 0);
+    $stmt->close();
+}
 ?>
 
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm py-3 py-lg-0 px-3 px-lg-0">
-    <a href="index.html" class="navbar-brand d-block d-lg-none">
+    <a href="index.php" class="navbar-brand d-block d-lg-none">
         <h1 class="m-0 text-uppercase text-white">
             <i class="fa fa-birthday-cake fs-1 text-primary me-3"></i>CakeZone
         </h1>
@@ -33,11 +46,20 @@ require './connect-db.php';
 
             <a href="contact.html" class="nav-item nav-link">Contact Us</a>
 
+            <!-- Giỏ hàng -->
+            <a href="cart.php" class="nav-item nav-link position-relative">
+                <i class="fa fa-shopping-cart me-1"></i> Cart
+                <?php if ($cart_count > 0): ?>
+                    <span class="badge bg-danger position-absolute top-0 start-100 translate-middle"><?= $cart_count ?></span>
+                <?php endif; ?>
+            </a>
+
+            <!-- User Dropdown -->
             <?php if (isset($_SESSION['customer_id'])): ?>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
                         <i class="fa fa-user me-2"></i>
-                        <?php echo htmlspecialchars($_SESSION['full_name'] ?? 'User'); ?>
+                        <?= htmlspecialchars($_SESSION['full_name'] ?? 'User') ?>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end m-0">
                         <a href="profile.php" class="dropdown-item">
