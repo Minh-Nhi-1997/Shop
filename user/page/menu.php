@@ -96,31 +96,31 @@ $conn->close();
             </ul>
 
             <div class="row g-4">
-    <?php if (!empty($products)): ?>
-        <?php foreach ($products as $product): ?>
-            <div class="col-lg-4 col-md-6">
-                <div class="card h-100 border-inner">
-                    <img class="card-img-top" src="../../assets/img/<?= htmlspecialchars($product['image']) ?>" 
-                         alt="<?= htmlspecialchars($product['product_name']) ?>" 
-                         style="height:200px; object-fit:cover;">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title text-uppercase"><?= htmlspecialchars($product['product_name']) ?></h5>
-                        <p class="card-text flex-grow-1"><?= htmlspecialchars($product['description']) ?></p>
-                        <h6 class="bg-dark text-primary p-2 text-center"><?= number_format($product['price'],0,',','.') ?>₫</h6>
-                        <form method="post" action="add-to-cart.php" class="mt-2">
-                            <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
-                            <button type="submit" class="btn btn-primary w-100">
-                                <i class="fa fa-shopping-cart"></i> Add to Cart
-                            </button>
-                        </form>
-                    </div>
-                </div>
+                <?php if (!empty($products)): ?>
+                    <?php foreach ($products as $product): ?>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card h-100 border-inner">
+                                <img class="card-img-top" src="../../assets/img/<?= htmlspecialchars($product['image']) ?>"
+                                    alt="<?= htmlspecialchars($product['product_name']) ?>"
+                                    style="height:200px; object-fit:cover;">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title text-uppercase"><?= htmlspecialchars($product['product_name']) ?></h5>
+                                    <p class="card-text flex-grow-1"><?= htmlspecialchars($product['description']) ?></p>
+                                    <h6 class="bg-dark text-primary p-2 text-center"><?= number_format($product['price'], 0, ',', '.') ?>₫</h6>
+                                    <form method="post" action="add-to-cart.php" class="mt-2">
+                                        <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+                                        <button type="submit" class="btn btn-primary w-100">
+                                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p class="text-center">Hiện chưa có sản phẩm trong danh mục này.</p>
+                <?php endif; ?>
             </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p class="text-center">Hiện chưa có sản phẩm trong danh mục này.</p>
-    <?php endif; ?>
-</div>
 
 
             <!-- Phân trang -->
