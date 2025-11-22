@@ -210,7 +210,7 @@ $conn->close();
 
                             <div class="row g-3">
                                 <div class="col-md-6">
-                                    <a href="orders.php" class="btn btn-outline-primary w-100 py-3">
+                                    <a href="lichSuDonHang.php" class="btn btn-outline-primary w-100 py-3">
                                         <i class="fa fa-history"></i> Xem Lịch Sử Đơn Hàng
                                     </a>
                                 </div>
