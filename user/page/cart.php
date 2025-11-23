@@ -126,10 +126,10 @@ $conn->close();
                 </a>
 
                 <a id="checkout-btn"
-                href="checkout.php"
-                class="btn btn-success <?= (array_filter($cart_items, fn($i)=>$i['stock']<=0)) ? 'disabled' : '' ?>">
+                    href="checkout.php"
+                    class="btn btn-success <?= (array_filter($cart_items, fn($i) => $i['stock'] <= 0)) ? 'disabled' : '' ?>">
                     <i class="fa fa-credit-card"></i>
-                    <?= (array_filter($cart_items, fn($i)=>$i['stock']<=0)) ? 'Mua ngay (Sản phẩm hết hàng)' : 'Mua ngay' ?>
+                    <?= (array_filter($cart_items, fn($i) => $i['stock'] <= 0)) ? 'Mua ngay (Sản phẩm hết hàng)' : 'Mua ngay' ?>
                 </a>
             </div>
 
@@ -162,6 +162,16 @@ $conn->close();
                     tr.find('.subtotal').text(data.subtotal + '₫');
                     $('#total').text(data.total + '₫');
                 }
+                // ✅ cập nhật số giỏ hàng trên header
+                let badge = $(".cart-badge");
+
+                if (data.cart_count > 0) {
+                    badge.text(data.cart_count).show();
+                } else {
+                    badge.hide();
+                }
+
+
 
                 // 🔥 kiểm tra tồn kho sau cập nhật
                 checkStockStatus();
@@ -182,8 +192,11 @@ $conn->close();
             }, function(data) {
                 if (data.success) {
 
-                    tr.remove(); 
+                    tr.remove();
                     $('#total').text(data.total + '₫');
+                    // ✅ cập nhật số giỏ hàng trên header
+                    $("#cart-count").text(data.cart_count);
+
 
                     // 🔥 SAU KHI XÓA — KIỂM TRA TỒN KHO CÒN LẠI
                     checkStockStatus();
@@ -193,6 +206,23 @@ $conn->close();
 
         // Hàm kiểm tra tồn kho các sản phẩm còn lại
         function checkStockStatus() {
+            let rows = $("#cart-body tr").length;
+            let btn = $("#checkout-btn");
+
+            // Nếu giỏ hàng rỗng
+            if (rows === 0) {
+                btn.removeClass("btn-success")
+                    .addClass("btn-secondary disabled")
+                    .html('<i class="fa fa-credit-card"></i> Mua ngay')
+                    .attr("href", "#");
+
+                // Ẩn bảng & hiện thông báo trống
+                $("table").hide();
+                $(".container").append('<p id="emptyCart">Giỏ hàng của bạn đang trống. <a href="index.php">Quay lại mua sắm</a></p>');
+                return;
+            }
+
+            // Nếu vẫn còn sản phẩm
             let canCheckout = true;
 
             $("#cart-body tr").each(function() {
@@ -202,18 +232,16 @@ $conn->close();
                 }
             });
 
-            let btn = $("#checkout-btn");
-
             if (canCheckout) {
                 btn.removeClass("disabled btn-secondary")
-                .addClass("btn-success")
-                .html('<i class="fa fa-credit-card"></i> Mua ngay')
-                .attr("href", "checkout.php");
+                    .addClass("btn-success")
+                    .html('<i class="fa fa-credit-card"></i> Mua ngay')
+                    .attr("href", "checkout.php");
             } else {
                 btn.removeClass("btn-success")
-                .addClass("btn-secondary disabled")
-                .html('<i class="fa fa-credit-card"></i> Mua ngay (Sản phẩm hết hàng)')
-                .attr("href", "#");
+                    .addClass("btn-secondary disabled")
+                    .html('<i class="fa fa-credit-card"></i> Mua ngay (Sản phẩm hết hàng)')
+                    .attr("href", "#");
             }
         }
     </script>

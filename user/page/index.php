@@ -47,10 +47,21 @@ $conn->close();
     <link href="../../assets/css/style.css" rel="stylesheet">
 </head>
 
-<body><!-- Navbar Start -->
+<body>
+    <!-- Navbar Start -->
     <?php include 'header.php'; ?>
-
     <!-- Navbar End -->
+    <!-- Notification Toast -->
+    <!-- Toast thông báo -->
+    <div class="position-fixed top-0 end-0 p-3" style="z-index: 1080;">
+        <div id="cartToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">Đã thêm sản phẩm vào giỏ hàng!</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
 
 
     <!-- Hero Start -->
@@ -191,83 +202,84 @@ $conn->close();
 
 
     <!-- Products Start -->
-<div class="container-fluid about py-5">
-    <div class="container">
-        <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
-            <h2 class="text-primary font-secondary">Menu & Pricing</h2>
-            <h1 class="display-4 text-uppercase">Explore Our Cakes</h1>
-        </div>
-        <?php
-        // Lấy tất cả category
-        $categories = [];
-        $result = $conn->query("SELECT * FROM categories ORDER BY category_id ASC");
-        while ($row = $result->fetch_assoc()) {
-            $categories[$row['category_id']] = $row['category_name'];
-        }
-        ?>
+    <div class="container-fluid about py-5">
+        <div class="container">
+            <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+                <h2 class="text-primary font-secondary">Menu & Pricing</h2>
+                <h1 class="display-4 text-uppercase">Explore Our Cakes</h1>
+            </div>
+            <?php
+            // Lấy tất cả category
+            $categories = [];
+            $result = $conn->query("SELECT * FROM categories ORDER BY category_id ASC");
+            while ($row = $result->fetch_assoc()) {
+                $categories[$row['category_id']] = $row['category_name'];
+            }
+            ?>
 
-        <div class="tab-class text-center">
-            <ul class="nav nav-pills d-inline-flex justify-content-center bg-dark text-uppercase border-inner p-4 mb-5">
-                <?php
-                $first = true;
-                foreach ($categories as $cat_id => $cat_name): ?>
-                    <li class="nav-item">
-                        <a class="nav-link text-white <?= $first ? 'active' : '' ?>" data-bs-toggle="pill" href="#tab-<?= $cat_id ?>">
-                            <?= htmlspecialchars($cat_name) ?>
-                        </a>
-                    </li>
-                <?php $first = false; endforeach; ?>
-            </ul>
+            <div class="tab-class text-center">
+                <ul class="nav nav-pills d-inline-flex justify-content-center bg-dark text-uppercase border-inner p-4 mb-5">
+                    <?php
+                    $first = true;
+                    foreach ($categories as $cat_id => $cat_name): ?>
+                        <li class="nav-item">
+                            <a class="nav-link text-white <?= $first ? 'active' : '' ?>" data-bs-toggle="pill" href="#tab-<?= $cat_id ?>">
+                                <?= htmlspecialchars($cat_name) ?>
+                            </a>
+                        </li>
+                    <?php $first = false;
+                    endforeach; ?>
+                </ul>
 
-            <div class="tab-content">
-                <?php
-                $first = true;
-                foreach ($categories as $cat_id => $cat_name):
-                    // Lấy 6 sản phẩm mới nhất của từng category
-                    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = ? ORDER BY product_id DESC LIMIT 6");
-                    $stmt->bind_param("i", $cat_id);
-                    $stmt->execute();
-                    $products_result = $stmt->get_result();
-                ?>
-                    <div id="tab-<?= $cat_id ?>" class="tab-pane fade p-0 <?= $first ? 'show active' : '' ?>">
-                        <div class="row g-4">
-                            <?php if ($products_result->num_rows > 0):
-                                while ($product = $products_result->fetch_assoc()): ?>
-                                    <div class="col-lg-4 col-md-6">
-                                        <div class="card h-100 border-inner">
-                                            <img class="card-img-top" src="../../assets/img/<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['product_name']) ?>" style="height:200px; object-fit:cover;">
-                                            <div class="card-body d-flex flex-column">
-                                                <h5 class="card-title text-uppercase"><?= htmlspecialchars($product['product_name']) ?></h5>
-                                                <p class="card-text flex-grow-1"><?= htmlspecialchars($product['description']) ?></p>
-                                                <h6 class="bg-dark text-primary p-2 text-center"><?= number_format($product['price'], 0, ',', '.') ?>₫</h6>
-                                                <form method="post" action="add-to-cart.php" class="mt-2">
-                                                    <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
-                                                    <button type="submit" class="btn btn-primary w-100">
-                                                        <i class="fa fa-shopping-cart"></i> Add to Cart
-                                                    </button>
-                                                </form>
+                <div class="tab-content">
+                    <?php
+                    $first = true;
+                    foreach ($categories as $cat_id => $cat_name):
+                        // Lấy 6 sản phẩm mới nhất của từng category
+                        $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = ? ORDER BY product_id DESC LIMIT 6");
+                        $stmt->bind_param("i", $cat_id);
+                        $stmt->execute();
+                        $products_result = $stmt->get_result();
+                    ?>
+                        <div id="tab-<?= $cat_id ?>" class="tab-pane fade p-0 <?= $first ? 'show active' : '' ?>">
+                            <div class="row g-4">
+                                <?php if ($products_result->num_rows > 0):
+                                    while ($product = $products_result->fetch_assoc()): ?>
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="card h-100 border-inner">
+                                                <img class="card-img-top" src="../../assets/img/<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['product_name']) ?>" style="height:200px; object-fit:cover;">
+                                                <div class="card-body d-flex flex-column">
+                                                    <h5 class="card-title text-uppercase"><?= htmlspecialchars($product['product_name']) ?></h5>
+                                                    <p class="card-text flex-grow-1"><?= htmlspecialchars($product['description']) ?></p>
+                                                    <h6 class="bg-dark text-primary p-2 text-center"><?= number_format($product['price'], 0, ',', '.') ?>₫</h6>
+                                                    <form method="post" action="add-to-cart.php" class="mt-2">
+                                                        <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+                                                        <button class="btn btn-primary w-100 add-to-cart-btn mt-2" data-id="<?= $product['product_id'] ?>">
+                                                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                                                        </button>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                <?php endwhile; ?>
-                            <?php else: ?>
-                                <p class="text-center">Hiện chưa có sản phẩm trong danh mục này.</p>
-                            <?php endif; ?>
+                                    <?php endwhile; ?>
+                                <?php else: ?>
+                                    <p class="text-center">Hiện chưa có sản phẩm trong danh mục này.</p>
+                                <?php endif; ?>
+                            </div>
+                            <!-- Nút Xem tất cả -->
+                            <div class="text-center mt-4">
+                                <a href="menu.php?category=<?= $cat_id ?>" class="btn btn-primary border-inner py-2 px-4">Xem tất cả</a>
+                            </div>
                         </div>
-                        <!-- Nút Xem tất cả -->
-                        <div class="text-center mt-4">
-                            <a href="menu.php?category=<?= $cat_id ?>" class="btn btn-primary border-inner py-2 px-4">Xem tất cả</a>
-                        </div>
-                    </div>
-                <?php
-                    $stmt->close();
-                    $first = false;
-                endforeach; ?>
+                    <?php
+                        $stmt->close();
+                        $first = false;
+                    endforeach; ?>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Products End -->
+    <!-- Products End -->
 
 
 
@@ -468,6 +480,38 @@ $conn->close();
     <script src="../../assets/lib/waypoints/waypoints.min.js"></script>
     <script src="../../assets/lib/counterup/counterup.min.js"></script>
     <script src="../../assets/lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Lọc theo danh mục
+            $('.nav-link[data-category]').on('click', function(e) {
+                e.preventDefault();
+                const categoryId = $(this).data('category');
+                window.location.href = '?page=1&category=' + categoryId;
+            });
+
+            // Thêm vào giỏ hàng Ajax
+            $('.add-to-cart-btn').click(function(e) {
+                e.preventDefault();
+                const product_id = $(this).data('id');
+
+                $.post('add-to-cart.php', { product_id: product_id }, function(data) {
+                    if (data.success) {
+                        // Cập nhật số lượng vào badge
+                        $('#cart-count').text(data.cart_count);
+
+                        // Hiển thị toast thông báo
+                        const toastEl = document.getElementById('cartToast');
+                        const toast = new bootstrap.Toast(toastEl);
+                        toast.show();
+                    } else {
+                        alert(data.message || 'Bạn cần đăng nhập để thêm vào giỏ hàng!');
+                    }
+                }, 'json');
+            });
+        });
+    </script>
+
 
     <!-- Template Javascript -->
     <script src="../../assets/js/main.js"></script>

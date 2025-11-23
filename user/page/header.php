@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 require './connect-db.php';
 
-// Lấy số lượng giỏ hàng của user nếu đã đăng nhập
+// Lấy số lượng giỏ hàng nếu user đã đăng nhập
 $cart_count = 0;
 if (isset($_SESSION['customer_id'])) {
     $uid = (int)$_SESSION['customer_id'];
@@ -17,10 +17,10 @@ if (isset($_SESSION['customer_id'])) {
     $stmt->close();
 }
 
-// Lấy tên file hiện tại
+// Lấy tên file hiện tại để active menu
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
-<!-- Topbar Start -->
+<!-- Topbar -->
 <div class="container-fluid px-0 d-none d-lg-block">
     <div class="row gx-0">
         <div class="col-lg-4 text-center bg-secondary py-3">
@@ -52,8 +52,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         </div>
     </div>
 </div>
-<!-- Topbar End -->
-
+<!-- Navbar -->
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm py-3 py-lg-0 px-3 px-lg-0">
     <a href="index.php" class="navbar-brand d-block d-lg-none">
         <h1 class="m-0 text-uppercase text-white">
@@ -67,73 +66,39 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto mx-lg-auto py-0">
-
-            <a href="index.php"
-                class="nav-item nav-link <?= $current_page == 'index.php' ? 'active' : '' ?>">
-                Home
-            </a>
-
-            <a href="about.php"
-                class="nav-item nav-link <?= $current_page == 'about.php' ? 'active' : '' ?>">
-                About Us
-            </a>
-
-            <a href="menu.php"
-                class="nav-item nav-link <?= $current_page == 'menu.php' ? 'active' : '' ?>">
-                Menu & Pricing
-            </a>
-
-            <a href="team.php"
-                class="nav-item nav-link <?= $current_page == 'team.php' ? 'active' : '' ?>">
-                Master Chefs
-            </a>
+            <a href="index.php" class="nav-item nav-link <?= $current_page == 'index.php' ? 'active' : '' ?>">Home</a>
+            <a href="about.php" class="nav-item nav-link <?= $current_page == 'about.php' ? 'active' : '' ?>">About Us</a>
+            <a href="menu.php" class="nav-item nav-link <?= $current_page == 'menu.php' ? 'active' : '' ?>">Menu & Pricing</a>
+            <a href="team.php" class="nav-item nav-link <?= $current_page == 'team.php' ? 'active' : '' ?>">Master Chefs</a>
 
             <div class="nav-item dropdown">
-                <a href="#"
-                    class="nav-link dropdown-toggle <?= in_array($current_page, ['service.php', 'testimonial.php']) ? 'active' : '' ?>"
-                    data-bs-toggle="dropdown">
-                    Pages
-                </a>
+                <a href="#" class="nav-link dropdown-toggle <?= in_array($current_page, ['service.php', 'testimonial.php']) ? 'active' : '' ?>" data-bs-toggle="dropdown">Pages</a>
                 <div class="dropdown-menu m-0">
-                    <a href="service.php"
-                        class="dropdown-item <?= $current_page == 'service.php' ? 'active' : '' ?>">
-                        Our Service
-                    </a>
-                    <a href="testimonial.php"
-                        class="dropdown-item <?= $current_page == 'testimonial.php' ? 'active' : '' ?>">
-                        Testimonial
-                    </a>
+                    <a href="service.php" class="dropdown-item <?= $current_page == 'service.php' ? 'active' : '' ?>">Our Service</a>
+                    <a href="testimonial.php" class="dropdown-item <?= $current_page == 'testimonial.php' ? 'active' : '' ?>">Testimonial</a>
                 </div>
             </div>
 
-            <a href="contact.php"
-                class="nav-item nav-link <?= $current_page == 'contact.php' ? 'active' : '' ?>">
-                Contact Us
-            </a>
+            <a href="contact.php" class="nav-item nav-link <?= $current_page == 'contact.php' ? 'active' : '' ?>">Contact Us</a>
 
             <!-- Giỏ hàng -->
-            <a href="cart.php"
-                class="nav-item nav-link position-relative <?= $current_page == 'cart.php' ? 'active' : '' ?>">
-                <i class="fa fa-shopping-cart me-1"></i> Cart
-                <?php if ($cart_count > 0): ?>
-                    <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
-                        <?= $cart_count ?>
-                    </span>
-                <?php endif; ?>
+            <a href="cart.php" class="nav-item nav-link position-relative <?= $current_page == 'cart.php' ? 'active' : '' ?>">
+                <i class="fa fa-shopping-cart me-1" style="position: relative;"></i> Cart
+                <span id="cart-count" class="badge bg-danger position-absolute"
+                    style="top:30px; right:10px; transform: translate(50%, -50%); font-size:0.75rem; padding:0.25em 0.45em; border-radius:50%;">
+                    <?= $cart_count ?>
+                </span>
             </a>
 
-            <!-- User Dropdown -->
+
+            <!-- User -->
             <?php if (isset($_SESSION['customer_id'])): ?>
                 <div class="nav-item dropdown">
-                    <a href="#"
-                        class="nav-link dropdown-toggle d-flex align-items-center <?= $current_page == 'profile.php' ? 'active' : '' ?>"
-                        data-bs-toggle="dropdown">
-                        <i class="fa fa-user me-2"></i>
-                        <?= htmlspecialchars($_SESSION['full_name'] ?? 'User') ?>
+                    <a href="#" class="nav-link dropdown-toggle d-flex align-items-center <?= $current_page == 'profile.php' ? 'active' : '' ?>" data-bs-toggle="dropdown">
+                        <i class="fa fa-user me-2"></i><?= htmlspecialchars($_SESSION['full_name'] ?? 'User') ?>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end m-0">
-                        <a href="profile.php"
-                            class="dropdown-item <?= $current_page == 'profile.php' ? 'active' : '' ?>">
+                        <a href="profile.php" class="dropdown-item <?= $current_page == 'profile.php' ? 'active' : '' ?>">
                             <i class="fa fa-id-card me-2"></i>Thông tin cá nhân
                         </a>
                         <a href="logout.php" class="dropdown-item text-danger">
@@ -142,12 +107,19 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     </div>
                 </div>
             <?php else: ?>
-                <a href="login.html"
-                    class="nav-item nav-link <?= $current_page == 'login.html' ? 'active' : '' ?>">
-                    Login
-                </a>
+                <a href="login.html" class="nav-item nav-link <?= $current_page == 'login.html' ? 'active' : '' ?>">Login</a>
             <?php endif; ?>
-
         </div>
     </div>
 </nav>
+
+<!-- Script cập nhật số lượng giỏ hàng realtime -->
+<script>
+    function updateCartCount() {
+        fetch("cart-count.php")
+            .then(res => res.text())
+            .then(count => {
+                document.getElementById("cart-count").innerText = count;
+            });
+    }
+</script>

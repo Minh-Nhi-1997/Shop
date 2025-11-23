@@ -172,7 +172,7 @@ $conn->close();
                                             $subtotal += $total_item;
                                         ?>
                                         <tr>
-                                            <td><img src="../../assets/images/<?= htmlspecialchars($item['image']) ?>" alt="<?= htmlspecialchars($item['product_name']) ?>" style="width:50px; height:50px; object-fit:cover;"></td>
+                                            <td><img src="../../assets/img/<?= htmlspecialchars($item['image']) ?>" alt="<?= htmlspecialchars($item['product_name']) ?>" style="width:50px; height:50px; object-fit:cover;"></td>
                                             <td><?= htmlspecialchars($item['product_name']) ?></td>
                                             <td><?= $item['quantity'] ?></td>
                                             <td><?= number_format($item['price'],0,',','.') ?>₫</td>
@@ -216,7 +216,7 @@ $conn->close();
                         </div>
 
                         <div class="bg-secondary border-inner p-4 rounded mb-4">
-                            <h5 class="text-white text-uppercase mb-3"><i class="fa fa-list text-primary"></i> Chi Tiết Đơn Hàng</h5>
+                            <h5 class="text-uppercase mb-3"><i class="fa fa-list text-primary"></i> Chi Tiết Đơn Hàng</h5>
                             <table class="table table-dark table-striped mb-0">
                                 <thead>
                                     <tr>
@@ -230,7 +230,7 @@ $conn->close();
                                 <tbody>
                                     <?php foreach ($order_items as $item): ?>
                                         <tr>
-                                            <td><img src="../../assets/images/<?= htmlspecialchars($item['image']) ?>" alt="<?= htmlspecialchars($item['product_name']) ?>" style="width:50px; height:50px; object-fit:cover;"></td>
+                                            <td><img src="../../assets/img/<?= htmlspecialchars($item['image']) ?>" alt="<?= htmlspecialchars($item['product_name']) ?>" style="width:50px; height:50px; object-fit:cover;"></td>
                                             <td><?= htmlspecialchars($item['product_name']) ?></td>
                                             <td><?= $item['quantity'] ?></td>
                                             <td><?= number_format($item['price'],0,',','.') ?>₫</td>
@@ -266,7 +266,6 @@ $conn->close();
 
 <?php include 'footer.php'; ?>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../../assets/js/bootstrap.bundle.min.js"></script>
 <script src="../../assets/js/main.js"></script>
 </body>
 </html>

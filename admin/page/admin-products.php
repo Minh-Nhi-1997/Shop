@@ -69,19 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 if (isset($_GET['delete_id'])) {
     $delId = intval($_GET['delete_id']);
 
-    $stmtImg = $conn->prepare("SELECT image FROM products WHERE product_id=?");
-    $stmtImg->bind_param("i", $delId);
-    $stmtImg->execute();
-    $stmtImg->bind_result($imageName);
-    $stmtImg->fetch();
-    $stmtImg->close();
-
-    if ($imageName && $imageName !== 'default.jpg') {
-        $filePath = $targetDir . $imageName;
-        if (file_exists($filePath)) unlink($filePath);
-    }
-
-    $stmt = $conn->prepare("DELETE FROM products WHERE product_id=?");
+    $stmt = $conn->prepare("UPDATE products SET is_active=0 WHERE product_id=?");
     $stmt->bind_param("i", $delId);
     $stmt->execute();
     $stmt->close();
@@ -96,6 +84,7 @@ if (isset($_GET['delete_id'])) {
     header("Location: $url");
     exit;
 }
+
 
 // --- Lấy danh mục ---
 $categories = [];
@@ -117,6 +106,9 @@ $where = "1";
 $params = [];
 $types = '';
 
+$where = "p.is_active=1"; // thay cho "1"
+$params = [];
+$types = '';
 if ($filterCategory) {
     $where .= " AND p.category_id=?";
     $params[] = $filterCategory;
