@@ -4,7 +4,7 @@ require '../../user/page/connect-db.php';
 
 // Kiểm tra đăng nhập admin
 if (!isset($_SESSION['admin_id'])) {
-    header('Location: admin_login.php');
+    header('Location: admin.php');
     exit;
 }
 

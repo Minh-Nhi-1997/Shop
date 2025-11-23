@@ -4,7 +4,7 @@ require './connect-db.php';
 
 // Nếu chưa đăng nhập, redirect tới login
 if (!isset($_SESSION['customer_id'])) {
-    header("Location: login.html");
+    header("Location: login.php");
     exit;
 }
 
@@ -13,7 +13,7 @@ $uid = (int)$_SESSION['customer_id'];
 // Lấy sản phẩm trong giỏ hàng kèm tồn kho
 $stmt = $conn->prepare("
     SELECT ci.cart_item_id, ci.quantity, 
-           p.product_name, p.price, p.image, p.stock
+        p.product_name, p.price, p.image, p.stock
     FROM cart_items ci
     JOIN products p ON ci.product_id = p.product_id
     WHERE ci.customer_id = ?

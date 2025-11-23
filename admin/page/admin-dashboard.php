@@ -3,7 +3,7 @@ session_start();
 require '../../user/page/connect-db.php'; // file kết nối DB
 // Kiểm tra đăng nhập
 if (!isset($_SESSION['admin_id'])) {
-    header('Location: admin_login.php'); // login admin riêng
+    header('Location: login.php'); // login admin riêng
     exit;
 }
 // Thống kê

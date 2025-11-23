@@ -3,7 +3,7 @@ session_start();
 require './connect-db.php';
 // Nếu chưa đăng nhập, redirect tới login
 if (!isset($_SESSION['customer_id'])) {
-    header("Location: login.html");
+    header("Location: login.php");
     exit;
 }
 $stmt = $conn->prepare("SELECT full_name FROM customers WHERE customer_id = ?");

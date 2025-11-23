@@ -189,44 +189,22 @@ $conn->close();
                                 <input name="new_password" type="password" class="form-control border-inner" placeholder="Mật khẩu mới (>=8 ký tự)">
                             </div>
 
-                            <div class="col-12 text-end pt-4">
-                                <a href="index.php" class="btn btn-outline-primary me-2">
-                                    <i class="fa fa-arrow-left"></i> Quay Lại
-                                </a>
-                                <button type="submit" class="btn btn-primary border-inner">
-                                    <i class="fa fa-save"></i> Lưu Thay Đổi
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+                            <div class="col-12 pt-4 d-flex justify-content-between align-items-center">
+                                <!-- Bên trái -->
+                                <a href="lichSuDonHang.php" class="btn btn-primary btn-sm">Xem các đơn hàng của bạn</a>
 
-                    <!-- Additional Info Card -->
-                    <div class="bg-secondary border-inner p-5 rounded mt-4">
-                        <h5 class="text-white text-uppercase mb-3">Hỗ Trợ Tài Khoản</h5>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="d-flex align-items-center">
-                                    <div class="bg-primary border-inner d-flex align-items-center justify-content-center mb-0" style="width: 50px; height: 50px;">
-                                        <i class="fa fa-history text-white"></i>
-                                    </div>
-                                    <div class="ms-3">
-                                        <h6 class="text-white mb-1">Lịch Sử Đơn Hàng</h6>
-                                        <a href="lichSuDonHang.php" class="text-primary small">Xem các đơn hàng của bạn</a>
-                                    </div>
+                                <!-- Bên phải -->
+                                <div>
+                                    <a href="index.php" class="btn btn-outline-primary me-2">
+                                        <i class="fa fa-arrow-left"></i> Quay Lại
+                                    </a>
+                                    <button type="submit" class="btn btn-primary border-inner">
+                                        <i class="fa fa-save"></i> Lưu Thay Đổi
+                                    </button>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="d-flex align-items-center">
-                                    <div class="bg-primary border-inner d-flex align-items-center justify-content-center mb-0" style="width: 50px; height: 50px;">
-                                        <i class="fa fa-heart text-white"></i>
-                                    </div>
-                                    <div class="ms-3">
-                                        <h6 class="text-white mb-1">Sản Phẩm Yêu Thích</h6>
-                                        <a href="wishlist.php" class="text-primary small">Quản lý danh sách yêu thích</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+                        </form>
                     </div>
                 </div>
             </div>
@@ -236,4 +214,5 @@ $conn->close();
     <!-- Footer + Scripts giống file gốc -->
     <?php include 'footer.php'; ?>
 </body>
+
 </html>

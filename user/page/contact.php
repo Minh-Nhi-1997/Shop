@@ -1,3 +1,12 @@
+<?php
+session_start();
+require './connect-db.php';
+
+if (!isset($_SESSION['customer_id'])) {
+    header("Location: login.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
