@@ -104,7 +104,7 @@ $stmt->close();
         <div class="row justify-content-start">
             <div class="col-lg-8 text-center text-lg-start">
                 <h1 class="font-secondary text-primary mb-4">My Orders</h1>
-                <h1 class="display-1 text-uppercase text-white mb-4">Lịch Sử Đơn Hàng</h1>
+                <h1 class="display-1 text-uppercase text-white mb-4">Đơn Hàng Của Bạn</h1>
             </div>
         </div>
     </div>

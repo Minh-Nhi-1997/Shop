@@ -311,15 +311,36 @@ $stmt->close();
 
 
         <!-- Pagination -->
+        <!-- Pagination -->
         <?php if ($totalPages > 1): ?>
           <nav>
-            <ul class="pagination">
+            <ul class="pagination justify-content-center">
+
+              <!-- Nút "Trước" -->
+              <?php if ($page > 1): ?>
+                <li class="page-item">
+                  <a class="page-link" href="?page=<?= $page - 1 ?>&q=<?= urlencode($q) ?>&status=<?= urlencode($filterStatus) ?>">« Trước</a>
+                </li>
+              <?php endif; ?>
+
+              <!-- Số trang -->
               <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                <li class="page-item <?= $i == $page ? 'active' : '' ?>"><a class="page-link" href="?page=<?= $i ?>&q=<?= urlencode($q) ?>&status=<?= urlencode($filterStatus) ?>"><?= $i ?></a></li>
+                <li class="page-item <?= ($i == $page) ? 'active' : ''; ?>">
+                  <a class="page-link" href="?page=<?= $i ?>&q=<?= urlencode($q) ?>&status=<?= urlencode($filterStatus) ?>"><?= $i ?></a>
+                </li>
               <?php endfor; ?>
+
+              <!-- Nút "Tiếp" -->
+              <?php if ($page < $totalPages): ?>
+                <li class="page-item">
+                  <a class="page-link" href="?page=<?= $page + 1 ?>&q=<?= urlencode($q) ?>&status=<?= urlencode($filterStatus) ?>">Tiếp »</a>
+                </li>
+              <?php endif; ?>
+
             </ul>
           </nav>
         <?php endif; ?>
+
       </div>
     </div>
   </div>
