@@ -178,7 +178,7 @@ $stmt->close();
                                         </td>
                                         <td class="text-end"><?= number_format($order['total_amount'],0,',','.') ?>₫</td>
                                         <td class="text-end">
-                                            <button class="btn btn-sm btn-outline-light" data-bs-toggle="collapse" data-bs-target="#items-<?= $oid ?>" aria-expanded="false">
+                                            <button href="order_detail.php"btn btn-sm btn-outline-light" data-bs-toggle="collapse" data-bs-target="#items-<?= $oid ?>" aria-expanded="false">
                                                 Xem chi tiết
                                             </button>
                                             <?php if ($can_feedback): ?>
