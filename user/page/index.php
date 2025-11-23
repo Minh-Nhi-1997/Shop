@@ -53,14 +53,14 @@ $conn->close();
     <!-- Navbar End -->
     <!-- Notification Toast -->
     <!-- Toast thông báo -->
-    <div class="position-fixed top-0 end-0 p-3" style="z-index: 1080;">
+    <!-- <div class="position-fixed top-0 end-0 p-3" style="z-index: 1000;">
         <div id="cartToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
                 <div class="toast-body">Đã thêm sản phẩm vào giỏ hàng!</div>
                 <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
         </div>
-    </div>
+    </div> -->
 
 
 
@@ -236,7 +236,7 @@ $conn->close();
                     $first = true;
                     foreach ($categories as $cat_id => $cat_name):
                         // Lấy 6 sản phẩm mới nhất của từng category
-                        $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = ? ORDER BY product_id DESC LIMIT 6");
+                        $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = ? AND is_active = 1 ORDER BY product_id DESC LIMIT 6");
                         $stmt->bind_param("i", $cat_id);
                         $stmt->execute();
                         $products_result = $stmt->get_result();
@@ -495,15 +495,17 @@ $conn->close();
                 e.preventDefault();
                 const product_id = $(this).data('id');
 
-                $.post('add-to-cart.php', { product_id: product_id }, function(data) {
+                $.post('add-to-cart.php', {
+                    product_id: product_id
+                }, function(data) {
                     if (data.success) {
                         // Cập nhật số lượng vào badge
                         $('#cart-count').text(data.cart_count);
 
                         // Hiển thị toast thông báo
-                        const toastEl = document.getElementById('cartToast');
-                        const toast = new bootstrap.Toast(toastEl);
-                        toast.show();
+                        // const toastEl = document.getElementById('cartToast');
+                        // const toast = new bootstrap.Toast(toastEl);
+                        // toast.show();
                     } else {
                         alert(data.message || 'Bạn cần đăng nhập để thêm vào giỏ hàng!');
                     }

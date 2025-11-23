@@ -53,7 +53,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
     </div>
 </div>
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm py-3 py-lg-0 px-3 px-lg-0">
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top shadow-sm py-3 py-lg-0 px-3 px-lg-0">
     <a href="index.php" class="navbar-brand d-block d-lg-none">
         <h1 class="m-0 text-uppercase text-white">
             <i class="fa fa-birthday-cake fs-1 text-primary me-3"></i>CakeZone
