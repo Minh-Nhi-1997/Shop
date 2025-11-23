@@ -129,6 +129,13 @@ $stmt->close();
 .status-badge.completed { background:#198754; color:#fff; }
 .status-badge.cancelled { background:#dc3545; color:#fff; }
 .feedback-box { background:#343a40; padding:10px; margin-top:10px; border-radius:5px; }
+.order-img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
 </style>
 </head>
 <body>
@@ -216,6 +223,7 @@ $stmt->close();
                             <table class="table table-sm table-dark mb-0">
                                 <thead>
                                     <tr>
+                                        <th>Hình ảnh</th>
                                         <th>Sản phẩm</th>
                                         <th class="text-center">Số lượng</th>
                                         <th class="text-end">Đơn giá</th>
@@ -225,7 +233,7 @@ $stmt->close();
                                 <tbody>
                                 <?php
                                 $stmt2 = $conn->prepare("
-                                    SELECT oi.quantity, oi.price, p.product_name
+                                    SELECT oi.quantity, oi.price, p.product_name, p.image
                                     FROM order_items oi
                                     JOIN products p ON oi.product_id = p.product_id
                                     WHERE oi.order_id=?
@@ -239,6 +247,7 @@ $stmt->close();
                                     $sum += $line;
                                 ?>
                                     <tr>
+                                        <td><img class="order-img" src="../../assets/img/<?= $it['image'] ?>" alt="<?= $it['image'] ?>"></td>
                                         <td><?= $it['product_name'] ?></td>
                                         <td class="text-center"><?= (int)$it['quantity'] ?></td>
                                         <td class="text-end"><?= number_format($it['price'],0,',','.') ?>₫</td>
