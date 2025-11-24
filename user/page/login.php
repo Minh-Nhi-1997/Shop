@@ -55,8 +55,14 @@ $conn->close();
     <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../assets/css/style.css" rel="stylesheet">
     <style>
-        .auth-card { max-width: 420px; margin: 90px auto; }
-        .brand-logo { font-family: 'Oswald', sans-serif; }
+        .auth-card {
+            max-width: 420px;
+            margin: 90px auto;
+        }
+
+        .brand-logo {
+            font-family: 'Oswald', sans-serif;
+        }
     </style>
 </head>
 
@@ -93,6 +99,10 @@ $conn->close();
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary w-100 border-inner">Đăng nhập</button>
+                    <div class="text-center mt-3">
+                        <a href="register.html" class="text-primary">Chưa có tài khoản? Đăng ký ngay</a>
+                    </div>
+
                 </form>
             </div>
         </div>
@@ -100,7 +110,7 @@ $conn->close();
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script>
-        $('#toggleLoginPass').on('click', function () {
+        $('#toggleLoginPass').on('click', function() {
             let passField = $('#loginPass');
             if (passField.attr('type') === 'password') {
                 passField.attr('type', 'text');
